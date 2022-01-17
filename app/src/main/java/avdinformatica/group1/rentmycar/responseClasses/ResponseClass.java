@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class ResponseClass implements Serializable {
 
     @SerializedName("id")
-    private int id;
+    private long id;
 
     @SerializedName("email")
     private String email;
@@ -18,11 +18,23 @@ public class ResponseClass implements Serializable {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("brand")
+    private String brand;
+
+    @SerializedName("model")
+    private String model;
+
+    @SerializedName("pickupLocationCoordinates")
+    private String distance;
+
+    @SerializedName("price")
+    private Integer price;
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -42,13 +54,19 @@ public class ResponseClass implements Serializable {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return
-                "ResponseClass{" +
-                        "id = '" + id + '\'' +
-                        ",email = '" + email + '\'' +
-                        ",password = '" + password + '\'' +
-                        "}";
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public Integer getPrice(){
+        return price;
     }
 }

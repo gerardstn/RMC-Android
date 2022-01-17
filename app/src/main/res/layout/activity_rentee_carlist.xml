@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_user"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/rmclogo" />
+
+    <TextView
+        android:id="@+id/tv_RenteeCarListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Beschikbare Autos"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+<!--    <ListView-->
+<!--        android:id="@+id/lv_available_car_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/tv_RenteeCarListTitle"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        ></ListView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_available_cars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_RenteeCarListTitle"
+        android:layout_marginTop="10dp"
+
+        />
+
+    <!--    <include-->
+<!--        layout="@layout/singlecar_listview_layout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tv_RenteeCarListTitle"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        />-->
+
+</RelativeLayout>

@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/rmclogo" />
 
     <TextView
-        android:id="@+id/tvLoginSuccess"
+        android:id="@+id/tv_LoginSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_user_loggedin"
@@ -29,12 +29,21 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tv_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvLoginSuccess"
+        android:layout_below="@id/tv_LoginSuccess"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         />
+
+    <Button
+        android:id="@+id/btn_RentalCars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_LoginSuccess"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Naar lijst huurautos" />
 
 </RelativeLayout>

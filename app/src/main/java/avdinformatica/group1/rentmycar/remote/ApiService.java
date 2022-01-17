@@ -1,5 +1,6 @@
 package avdinformatica.group1.rentmycar.remote;
 
+import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
 import avdinformatica.group1.rentmycar.responseClasses.ResponseClass;
 import avdinformatica.group1.rentmycar.responseClasses.ResponseRegisterClass;
 import retrofit2.Call;
@@ -15,4 +16,6 @@ public interface ApiService {
     @POST("/api/v1/clients/login")
     Call<ResponseClass> getUser(@Body ResponseRegisterClass responseRegisterClass);
 
+    @POST("/api/v1/cars/available")
+    Call<ResponseClass> getAvailableCars(@Body ResponseCarClass responseCarClass);
 }

@@ -10,7 +10,7 @@ public class Network {
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
     public static Retrofit getInstance() {
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl("https://d739-84-104-155-39.ngrok.io")
+        Retrofit.Builder builder = new Retrofit.Builder().baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build());
         return builder.build();

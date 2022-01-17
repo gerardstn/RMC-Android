@@ -36,12 +36,5 @@ public class ResponseRegisterClass implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return
-                "ResponseRegisterClass{" +
-                        "email = '" + email + '\'' +
-                        ",password = '" + password + '\'' +
-                        "}";
-    }
+
 }

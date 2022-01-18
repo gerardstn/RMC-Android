@@ -18,7 +18,7 @@
             android:layout_height="120dp"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/rmclogo"  />
+            app:srcCompat="@drawable/carplaceholder"  />
 
         <TextView
             android:id="@+id/tv_car_brand"

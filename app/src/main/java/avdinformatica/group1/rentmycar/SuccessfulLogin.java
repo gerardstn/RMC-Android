@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import avdinformatica.group1.rentmycar.CarRegistration.CarRegistrationActivity2;
 import avdinformatica.group1.rentmycar.remote.ApiService;
 import avdinformatica.group1.rentmycar.remote.Network;
 import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
@@ -26,6 +27,7 @@ public class SuccessfulLogin extends AppCompatActivity {
 
     TextView tvEmail;
     Button btnRentalCars;
+    Button btnRegisterYourCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,14 @@ public class SuccessfulLogin extends AppCompatActivity {
     }
 
     private void onClickListeners() {
+        btnRegisterYourCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SuccessfulLogin.this, CarRegistrationActivity2.class);
+                startActivity(intent);
+            }
+        });
+
         btnRentalCars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +80,7 @@ public class SuccessfulLogin extends AppCompatActivity {
     }
     private void initializeListeners() {
         btnRentalCars = findViewById(R.id.btn_RentalCars);
+        btnRegisterYourCar = findViewById(R.id.btn_register_your_car);
     }
 }
 

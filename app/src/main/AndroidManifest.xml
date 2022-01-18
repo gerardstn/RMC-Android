@@ -14,6 +14,7 @@
         android:theme="@style/Theme.RentMyCar">
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SuccessfulLogin" />
+        <activity android:name=".CarRegistration.CarRegistrationActivity2" />
         <activity android:name=".RenteeActivity" />
         <activity android:name=".LoginActivity"
             android:exported="true">

@@ -1,5 +1,7 @@
 package avdinformatica.group1.rentmycar.remote;
 
+import java.util.List;
+
 import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
 import avdinformatica.group1.rentmycar.responseClasses.ResponseClass;
 import avdinformatica.group1.rentmycar.responseClasses.ResponseRegisterClass;
@@ -17,5 +19,5 @@ public interface ApiService {
     Call<ResponseClass> getUser(@Body ResponseRegisterClass responseRegisterClass);
 
     @POST("/api/v1/cars/available")
-    Call<ResponseClass> getAvailableCars(@Body ResponseCarClass responseCarClass);
+    Call<List<ResponseCarClass>> getAvailableCars(@Body ResponseCarClass responseCarClass);
 }

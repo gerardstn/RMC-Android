@@ -21,40 +21,35 @@ public class ResponseCarClass implements Serializable {
     @SerializedName("carType")
     private String carType;
     @SerializedName("price")
-    private Integer price;
-
-//    public void setemail(String email) {
-//        this.email = email;
-//    }
-//
-//    public String getemail() {
-//        return email;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//   TextView tvCarBrand;
-//    TextView tvCarModel;
-//    TextView tvCarDistance;
-//    TextView tvCarPrice;
+    private String price;
 
     //get available for rent cars
     public ResponseCarClass(Boolean forRent) {
         this.forRent = forRent;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public Boolean getForRent() {
+        return forRent;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
 }
-
-
-//    private Long carId;
-//    private String brand;
-//    private String model;
-//    private String licensePlate;
-//    private String pickupLocationCoordinates;
-//    private Long clientId;
-//    private Boolean forRent;

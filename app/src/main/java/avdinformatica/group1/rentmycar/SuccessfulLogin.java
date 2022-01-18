@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import avdinformatica.group1.rentmycar.remote.ApiService;
 import avdinformatica.group1.rentmycar.remote.Network;
@@ -35,9 +38,6 @@ public class SuccessfulLogin extends AppCompatActivity {
         onClickListeners();
     }
 
-
-
-
     private void onClickListeners() {
         btnRentalCars.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,23 +46,22 @@ public class SuccessfulLogin extends AppCompatActivity {
                     ResponseCarClass responseCarClass = new ResponseCarClass(true);
 
                     ApiService apiService = Network.getInstance().create(ApiService.class);
-                    apiService.getAvailableCars(responseCarClass).enqueue(new Callback<ResponseClass>() {
+                    apiService.getAvailableCars(responseCarClass).enqueue(new Callback<List<ResponseCarClass>>() {
                         @Override
-                        public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
+                        public void onResponse(Call<List<ResponseCarClass>> call, Response<List<ResponseCarClass>> response) {
 
                             if (response.body() != null) {
+                                    Log.d("responseFromRetrofit", response.body().toString());
+
                                 Toast.makeText(SuccessfulLogin.this, "Cars loading", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SuccessfulLogin.this, RenteeActivity.class);
-                                intent.putExtra("brand", response.body().getBrand());
-                                intent.putExtra("model", response.body().getModel());
-                                intent.putExtra("distance", response.body().getDistance());
-                                intent.putExtra("price", response.body().getPrice());
+                                intent.putExtra("carList", (Serializable) response.body());
                                 startActivity(intent);
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseClass> call, Throwable t) {
+                        public void onFailure(Call<List<ResponseCarClass>> call, Throwable t) {
                             Toast.makeText(SuccessfulLogin.this, "Unable to retrieve available cars", Toast.LENGTH_SHORT).show();
                         }
                     });

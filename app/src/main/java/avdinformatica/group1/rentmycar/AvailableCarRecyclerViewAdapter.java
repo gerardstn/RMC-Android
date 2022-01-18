@@ -9,16 +9,18 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.List;
+import java.util.ArrayList;
+
+import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
 
 public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<AvailableCarRecyclerViewAdapter.ViewHolder>{
 
-    private List<String> mData;
+    private ArrayList<ResponseCarClass> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    AvailableCarRecyclerViewAdapter(Context context, List<String> data) {
+    AvailableCarRecyclerViewAdapter(Context context, ArrayList<ResponseCarClass> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -33,8 +35,11 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String carModel = mData.get(position);
-        holder.tvCarModel.setText(carModel);
+        ResponseCarClass carModel = mData.get(position);
+        holder.tvCarModel.setText(carModel.getModel());
+        holder.tvCarBrand.setText(carModel.getBrand());
+        holder.tvCarDistance.setText(carModel.getDistance());
+        holder.tvCarPrice.setText(carModel.getPrice());
     }
 
     // total number of rows
@@ -47,11 +52,16 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvCarModel;
-
+        TextView tvCarBrand;
+        TextView tvCarDistance;
+        TextView tvCarPrice;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvCarModel = tvCarModel.findViewById(R.id.tv_car_model);
+            tvCarModel = itemView.findViewById(R.id.tv_car_model);
+            tvCarBrand = itemView.findViewById(R.id.tv_car_brand);
+            tvCarDistance = itemView.findViewById(R.id.tv_car_distance);
+            tvCarPrice = itemView.findViewById(R.id.tv_car_price_value);
             itemView.setOnClickListener(this);
         }
 
@@ -61,10 +71,8 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
         }
     }
 
-
-
     // convenience method for getting data at click position
-    String getItem(int id) {
+    ResponseCarClass getItem(int id) {
         return mData.get(id);
     }
 

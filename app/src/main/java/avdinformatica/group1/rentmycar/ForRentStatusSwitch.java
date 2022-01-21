@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar.CarRegistration;
+package avdinformatica.group1.rentmycar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,7 @@ import avdinformatica.group1.rentmycar.R;
 
 //public class ForRentStatusSwitch extends AppCompatActivity {
 
-//    ToggleButton toggle = (ToggleButton) findViewById(R.id.togglebutton);
+//ToggleButton toggle = (ToggleButton) findViewById(R.id.togglebutton);
 //toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //            if (isChecked) {

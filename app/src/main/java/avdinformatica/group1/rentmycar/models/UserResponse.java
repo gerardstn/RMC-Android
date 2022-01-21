@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar.responseClasses;
+package avdinformatica.group1.rentmycar.models;
 
 import javax.annotation.Generated;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 @Generated("com.robohorse.robopojogenerator")
-public class ResponseClass implements Serializable {
+public class UserResponse implements Serializable {
 
     @SerializedName("id")
     private long id;

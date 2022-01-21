@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar;
+package avdinformatica.group1.rentmycar.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
+import avdinformatica.group1.rentmycar.adapters.AvailableCarRecyclerViewAdapter;
+import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.models.CarResponse;
 
 public class RenteeActivity extends AppCompatActivity implements AvailableCarRecyclerViewAdapter.ItemClickListener {
 
@@ -22,7 +24,7 @@ public class RenteeActivity extends AppCompatActivity implements AvailableCarRec
     TextView tvCarDistance;
     TextView tvCarPrice;
 
-    ArrayList<ResponseCarClass> carList;
+    ArrayList<CarResponse> carList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,9 @@ public class RenteeActivity extends AppCompatActivity implements AvailableCarRec
         setContentView(R.layout.activity_rentee_carlist);
 
         // retrieve list of available cars
-        carList = (ArrayList<ResponseCarClass>) getIntent().getSerializableExtra("carList");
+        carList = (ArrayList<CarResponse>) getIntent().getSerializableExtra("carList");
 
-        ArrayList<ResponseCarClass> carDetails = new ArrayList<ResponseCarClass>();
+        ArrayList<CarResponse> carDetails = new ArrayList<CarResponse>();
         for (int i = 0; i < carList.size(); i++){
             carDetails.add(carList.get(i));
         }

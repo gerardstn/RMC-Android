@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar.remote;
+package avdinformatica.group1.rentmycar.network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

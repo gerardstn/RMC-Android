@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar;
+package avdinformatica.group1.rentmycar.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import avdinformatica.group1.rentmycar.remote.ApiService;
-import avdinformatica.group1.rentmycar.remote.Network;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseClass;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseRegisterClass;
+import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.services.ApiService;
+import avdinformatica.group1.rentmycar.network.Network;
+import avdinformatica.group1.rentmycar.models.UserResponse;
+import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,22 +40,22 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateUsername() && validatePassword()) {
-                    ResponseRegisterClass responseRegisterClass = new ResponseRegisterClass(etEmail.getText().toString(), etPassword.getText().toString());
+                    RegisterResponse registerResponse = new RegisterResponse(etEmail.getText().toString(), etPassword.getText().toString());
 
                     ApiService apiService = Network.getInstance().create(ApiService.class);
-                    apiService.getUser(responseRegisterClass).enqueue(new Callback<ResponseClass>() {
+                    apiService.getUser(registerResponse).enqueue(new Callback<UserResponse>() {
                         @Override
-                        public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
+                        public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                             if (response.body() != null) {
                                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, SuccessfulLogin.class);
+                                Intent intent = new Intent(LoginActivity.this, SuccessfulLoginActivity.class);
                                 intent.putExtra("email", response.body().getEmail());
                                 startActivity(intent);
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseClass> call, Throwable t) {
+                        public void onFailure(Call<UserResponse> call, Throwable t) {
                             Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
                         }
                     });

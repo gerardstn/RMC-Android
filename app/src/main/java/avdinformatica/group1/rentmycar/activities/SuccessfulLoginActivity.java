@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar;
+package avdinformatica.group1.rentmycar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,19 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import avdinformatica.group1.rentmycar.CarRegistration.CarRegistrationActivity2;
-import avdinformatica.group1.rentmycar.remote.ApiService;
-import avdinformatica.group1.rentmycar.remote.Network;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseClass;
+import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.services.ApiService;
+import avdinformatica.group1.rentmycar.network.Network;
+import avdinformatica.group1.rentmycar.models.CarResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SuccessfulLogin extends AppCompatActivity {
+public class SuccessfulLoginActivity extends AppCompatActivity {
 
     TextView tvEmail;
     Button btnRentalCars;
@@ -44,7 +42,7 @@ public class SuccessfulLogin extends AppCompatActivity {
         btnRegisterYourCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SuccessfulLogin.this, CarRegistrationActivity2.class);
+                Intent intent = new Intent(SuccessfulLoginActivity.this, CarRegistrationActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,26 +51,26 @@ public class SuccessfulLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    ResponseCarClass responseCarClass = new ResponseCarClass(true);
+                    CarResponse carResponse = new CarResponse(true);
 
                     ApiService apiService = Network.getInstance().create(ApiService.class);
-                    apiService.getAvailableCars(responseCarClass).enqueue(new Callback<List<ResponseCarClass>>() {
+                    apiService.getAvailableCars(carResponse).enqueue(new Callback<List<CarResponse>>() {
                         @Override
-                        public void onResponse(Call<List<ResponseCarClass>> call, Response<List<ResponseCarClass>> response) {
+                        public void onResponse(Call<List<CarResponse>> call, Response<List<CarResponse>> response) {
 
                             if (response.body() != null) {
                                     Log.d("responseFromRetrofit", response.body().toString());
 
-                                Toast.makeText(SuccessfulLogin.this, "Cars loading", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SuccessfulLogin.this, RenteeActivity.class);
+                                Toast.makeText(SuccessfulLoginActivity.this, "Cars loading", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SuccessfulLoginActivity.this, RenteeActivity.class);
                                 intent.putExtra("carList", (Serializable) response.body());
                                 startActivity(intent);
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<List<ResponseCarClass>> call, Throwable t) {
-                            Toast.makeText(SuccessfulLogin.this, "Unable to retrieve available cars", Toast.LENGTH_SHORT).show();
+                        public void onFailure(Call<List<CarResponse>> call, Throwable t) {
+                            Toast.makeText(SuccessfulLoginActivity.this, "Unable to retrieve available cars", Toast.LENGTH_SHORT).show();
                         }
                     });
             }

@@ -15,6 +15,7 @@
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.SuccessfulLoginActivity" />
         <activity android:name=".activities.RenteeActivity" />
+        <activity android:name=".activities.CarRegistrationActivity" />
         <activity android:name=".activities.LoginActivity"
             android:exported="true">
 

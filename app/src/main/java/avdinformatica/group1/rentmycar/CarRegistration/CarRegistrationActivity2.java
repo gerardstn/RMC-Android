@@ -34,12 +34,12 @@ public class CarRegistrationActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_registration);
 
-        brand = (EditText) findViewById(R.id.editText1);
-        model = (EditText) findViewById(R.id.editText2);
-        year = (EditText) findViewById(R.id.editText3);
-        engineType = (EditText) findViewById(R.id.editText4);
-        mileage = (EditText) findViewById(R.id.editText5);
-        register = (Button) findViewById(R.id.btn_register);
+//        brand = (EditText) findViewById(R.id.editText1);
+//        model = (EditText) findViewById(R.id.editText2);
+//        year = (EditText) findViewById(R.id.editText3);
+//        engineType = (EditText) findViewById(R.id.editText4);
+//        mileage = (EditText) findViewById(R.id.editText5);
+        register = (Button) findViewById(R.id.btn_car_register);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,145 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="328dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="381dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="437dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="495dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tv_reg_password3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mileage"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="476dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tv_reg_password2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Engine Type"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="418dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:background="#11000000"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="266dp"
-        tools:ignore="MissingConstraints" />
-
     <ImageView
         android:id="@+id/iv_user"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        tools:ignore="MissingConstraints" />
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/rmclogo"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="48dp" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_car_register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brand"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/iv_user"
+        android:layout_marginTop="15dp"
+        android:text="Auto registeren"
         android:textColor="#000000"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="247dp"
-        tools:ignore="MissingConstraints" />
+        />
 
     <TextView
-        android:id="@+id/tv_reg_email"
+        android:id="@+id/tv_car_register_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_car_register_brand"
+        android:layout_alignStart="@id/et_car_register_brand"
+        android:layout_below="@id/tv_car_register_title"
+        android:layout_marginTop="22dp"
+        android:text="Merk"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        />
+    <EditText
+        android:id="@+id/et_car_register_brand"
+        android:textColor="#000000"
+        android:background="#11000000"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/tv_car_register_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        />
+
+    <TextView
+        android:id="@+id/tv_car_register_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_car_register_model"
+        android:layout_alignStart="@id/et_car_register_model"
+        android:layout_below="@id/et_car_register_brand"
+        android:layout_marginTop="12dp"
         android:text="Model"
         android:textColor="#000000"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="309dp"
-        tools:ignore="MissingConstraints" />
-
+        />
+    <EditText
+        android:id="@+id/et_car_register_model"
+        android:textColor="#000000"
+        android:background="#11000000"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/et_car_register_brand"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        />
     <TextView
-        android:id="@+id/tv_reg_password"
+        android:id="@+id/tv_car_register_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Year"
+        android:layout_alignLeft="@id/et_car_register_brand"
+        android:layout_alignStart="@id/et_car_register_brand"
+        android:layout_below="@id/et_car_register_model"
+        android:layout_marginTop="12dp"
+        android:text="Autotype"
         android:textColor="#000000"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="362dp"
-        tools:ignore="MissingConstraints" />
+        />
 
+
+    <RadioGroup
+        android:id="@+id/rb_car_register_type"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_car_register_type"
+        android:layout_alignLeft="@id/tv_car_register_type"
+        android:layout_alignStart="@id/tv_car_register_type"
+        >
+        <RadioButton
+            android:id="@+id/rb_car_register_bev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elektrisch" />
+        <RadioButton
+            android:id="@+id/rb_car_register_ice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brandstof" />
+        <RadioButton
+            android:id="@+id/rb_car_register_fcev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waterstof" />
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/tv_car_register_licence_plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_car_register_location"
+        android:layout_alignStart="@id/et_car_register_location"
+        android:layout_below="@id/rb_car_register_type"
+        android:layout_marginTop="12dp"
+        android:text="Kenteken"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        />
+    <EditText
+        android:id="@+id/et_car_register_licence_plate"
+        android:textColor="#000000"
+        android:background="#11000000"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/rb_car_register_type"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        />
+    <TextView
+        android:id="@+id/tv_car_register_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/et_car_register_location"
+        android:layout_alignStart="@id/et_car_register_location"
+        android:layout_below="@id/et_car_register_licence_plate"
+        android:layout_marginTop="12dp"
+        android:text="Car rent location"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        />
+    <EditText
+        android:id="@+id/et_car_register_location"
+        android:textColor="#000000"
+        android:background="#11000000"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/et_car_register_licence_plate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        />
     <Button
         android:id="@+id/btn_register"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_below="@id/et_car_register_location"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_rectangle_cyan"
-        android:text="Register"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="595dp"
-        tools:ignore="MissingConstraints" />
+        android:text="Register Car"
+        app:backgroundTint="@color/cyan" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/placeholder">
+    app:startDestination="@id/fragment_login">
     <fragment
-        android:id="@+id/placeholder"
-        android:label="Login screen">
+        android:id="@+id/fragment_login"
+        android:name="avdinformatica.group1.rentmycar.ui.LoginFragment"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_placeholder_to_placeholder2"
             app:destination="@id/placeholder2" />

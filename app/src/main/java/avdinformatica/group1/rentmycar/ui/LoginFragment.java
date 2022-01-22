@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -88,12 +89,12 @@ public class LoginFragment extends Fragment {
         tvRegister = view.findViewById(R.id.tv_register);
         btnLogin = view.findViewById(R.id.btn_login);
 
-        onClickListeners();
+        setOnClickListeners();
 
         return view;
     }
 
-    private void onClickListeners() {
+    private void setOnClickListeners() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,8 +126,8 @@ public class LoginFragment extends Fragment {
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity().getApplicationContext(), RegisterActivity.class));
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_login_to_register);
             }
         });
     }

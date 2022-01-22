@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import avdinformatica.group1.rentmycar.R;
-import avdinformatica.group1.rentmycar.activities.RegisterActivity;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.network.Network;

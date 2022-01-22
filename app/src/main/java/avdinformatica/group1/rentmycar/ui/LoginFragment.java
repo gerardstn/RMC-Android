@@ -15,10 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import avdinformatica.group1.rentmycar.MainActivity;
 import avdinformatica.group1.rentmycar.R;
-import avdinformatica.group1.rentmycar.activities.LoginActivity;
-import avdinformatica.group1.rentmycar.activities.RegisterActivity;
 import avdinformatica.group1.rentmycar.activities.SuccessfulLoginActivity;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import avdinformatica.group1.rentmycar.models.UserResponse;

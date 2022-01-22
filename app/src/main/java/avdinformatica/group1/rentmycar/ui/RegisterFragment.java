@@ -88,7 +88,7 @@ public class RegisterFragment extends Fragment {
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                             if (response.body() != null) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Registration successful", Toast.LENGTH_SHORT).show();
-                                getActivity().finish();
+                                getParentFragmentManager().popBackStack();
                             } else {
                                 Toast.makeText(getActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
                             }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/placeholder">
+    <fragment
+        android:id="@+id/placeholder"
+        android:label="Login screen">
+        <action
+            android:id="@+id/action_placeholder_to_placeholder2"
+            app:destination="@id/placeholder2" />
+        <action
+            android:id="@+id/action_placeholder_to_placeholder6"
+            app:destination="@id/placeholder6" />
+        <action
+            android:id="@+id/action_placeholder_to_placeholder11"
+            app:destination="@id/placeholder11" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholder2"
+        android:label="Home screen after login">
+        <action
+            android:id="@+id/action_placeholder2_to_placeholder3"
+            app:destination="@id/placeholder3" />
+        <action
+            android:id="@+id/action_placeholder2_to_placeholder52"
+            app:destination="@id/placeholder5" />
+        <action
+            android:id="@+id/action_placeholder2_to_placeholder11"
+            app:destination="@id/placeholder11" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholder3"
+        android:label="Register own car">
+        <action
+            android:id="@+id/action_placeholder3_to_placeholder9"
+            app:destination="@id/placeholder9" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholder5"
+        android:label="Car list view" >
+        <action
+            android:id="@+id/action_placeholder5_to_placeholder7"
+            app:destination="@id/placeholder7" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholder6"
+        android:label="Registration screen" />
+    <fragment
+        android:id="@+id/placeholder7"
+        android:label="Car detail screen" >
+        <action
+            android:id="@+id/action_placeholder7_to_placeholder8"
+            app:destination="@id/placeholder8" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeholder8"
+        android:label="Car rent screen" />
+    <fragment
+        android:id="@+id/placeholder9"
+        android:label="Car registered" />
+    <fragment
+        android:id="@+id/placeholder11"
+        android:label="About us screen" />
+</navigation>

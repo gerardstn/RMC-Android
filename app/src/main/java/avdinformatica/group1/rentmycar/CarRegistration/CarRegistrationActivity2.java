@@ -5,8 +5,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+<<<<<<< Updated upstream:app/src/main/java/avdinformatica/group1/rentmycar/CarRegistration/CarRegistrationActivity2.java
 import android.widget.TextView;
+=======
+import android.widget.RadioButton;
+>>>>>>> Stashed changes:app/src/main/java/avdinformatica/group1/rentmycar/activities/CarRegistrationActivity.java
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +29,15 @@ public class CarRegistrationActivity2 extends AppCompatActivity {
 
     EditText brand;
     EditText model;
-    EditText year;
-    EditText engineType;
-    EditText mileage;
+    EditText licensePlate;
+    RadioButton engineType;
+    EditText registerLocation;
     Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< Updated upstream:app/src/main/java/avdinformatica/group1/rentmycar/CarRegistration/CarRegistrationActivity2.java
         setContentView(R.layout.car_registration);
 
         final EditText brand = (EditText) findViewById(R.id.editText1);
@@ -39,6 +45,18 @@ public class CarRegistrationActivity2 extends AppCompatActivity {
         final EditText year = (EditText) findViewById(R.id.editText3);
         final EditText engineType = (EditText) findViewById(R.id.editText4);
         final EditText mileage = (EditText) findViewById(R.id.editText5);
+=======
+        setContentView(R.layout.activity_car_registration);
+
+        brand = (EditText) findViewById(R.id.et_car_register_brand);
+        model = (EditText) findViewById(R.id.et_car_register_model);
+        licensePlate = (EditText) findViewById(R.id.et_car_register_licence_plate);
+        engineType = (RadioButton) findViewById(R.id.rb_car_register_bev);
+        engineType = (RadioButton) findViewById(R.id.rb_car_register_ice);
+        engineType = (RadioButton) findViewById(R.id.rb_car_register_fcev);
+        registerLocation = (EditText) findViewById(R.id.et_car_register_location);
+        register = (Button) findViewById(R.id.btn_car_register);
+>>>>>>> Stashed changes:app/src/main/java/avdinformatica/group1/rentmycar/activities/CarRegistrationActivity.java
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,16 +81,16 @@ public class CarRegistrationActivity2 extends AppCompatActivity {
             model.setError("Car model is required!");
         }
 
-        if (isEmpty(year) == false) {
-            year.setError("Your car's year of construction is required!");
+        if (isEmpty(licensePlate) == false) {
+            licensePlate.setError("Your car's licenseplate is required!");
         }
 
-        if (isEmpty(engineType) == false) {
+        if (!engineType.isChecked()) {
             engineType.setError("Your car's engine type is required!");
         }
 
-        if (isEmpty(mileage) == false) {
-            mileage.setError("Your car's average mileage is required!");
+        if (isEmpty(registerLocation) == false) {
+            registerLocation.setError("Your car's average mileage is required!");
         }
 
 

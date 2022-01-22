@@ -7,6 +7,8 @@
         <entry key="..\:/Users/danny/code/School/RMC-Android/app/src/main/res/layout/car_registration.xml" value="0.29583333333333334" />
         <entry key="..\:/Users/danny/code/School/RMC-Android/app/src/main/res/layout/login_layout.xml" value="0.25815217391304346" />
         <entry key="..\:/Users/danny/code/School/RMC-Android/app/src/main/res/layout/singlecar_listview_layout.xml" value="0.6" />
+        <entry key="..\:/Users/gerar/AndroidStudioProjects/RMC-Android-master/app/src/main/res/layout/activity_car_registration.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/gerar/AndroidStudioProjects/RMC-Android-master/app/src/main/res/layout/activity_register.xml" value="0.559375" />
         <entry key="..\:/Users/gerar/AndroidStudioProjects/RMC-Android-master/app/src/main/res/layout/activity_rentee_carlist.xml" value="0.375" />
         <entry key="..\:/Users/gerar/AndroidStudioProjects/RMC-Android-master/app/src/main/res/layout/activity_successful_login.xml" value="0.375" />
         <entry key="..\:/Users/gerar/AndroidStudioProjects/RMC-Android-master/app/src/main/res/layout/car_registration.xml" value="0.375" />
@@ -16,7 +18,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

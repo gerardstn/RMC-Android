@@ -13,8 +13,11 @@ import avdinformatica.group1.rentmycar.models.User;
 @Dao
 public interface UserDao {
 
-    @Query("Select * from user")
+    @Query("SELECT * FROM user")
     List<User> getUserList();
+
+    @Query("SELECT * FROM user WHERE sessionId=:sessionId")
+    User getUser(String sessionId);
 
     @Insert
     void insertUser(User user);

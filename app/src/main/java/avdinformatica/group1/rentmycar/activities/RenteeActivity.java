@@ -38,6 +38,7 @@ public class RenteeActivity extends AppCompatActivity implements AvailableCarRec
         ArrayList<CarResponse> carDetails = new ArrayList<CarResponse>();
         for (int i = 0; i < carList.size(); i++){
             carDetails.add(carList.get(i));
+            Helper.getLat(carList.get(1).getDistance());
         }
 
         // set up the RecyclerView

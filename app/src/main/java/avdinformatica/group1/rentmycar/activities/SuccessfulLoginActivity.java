@@ -26,6 +26,7 @@ public class SuccessfulLoginActivity extends AppCompatActivity {
     TextView tvEmail;
     Button btnRentalCars;
     Button btnRegisterYourCar;
+    Button btnGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,14 @@ public class SuccessfulLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SuccessfulLoginActivity.this, CarRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnGPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SuccessfulLoginActivity.this, GPSActivity.class);
                 startActivity(intent);
             }
         });
@@ -79,6 +88,7 @@ public class SuccessfulLoginActivity extends AppCompatActivity {
     private void initializeListeners() {
         btnRentalCars = findViewById(R.id.btn_RentalCars);
         btnRegisterYourCar = findViewById(R.id.btn_register_your_car);
+        btnGPS = findViewById(R.id.btn_gps);
     }
 }
 

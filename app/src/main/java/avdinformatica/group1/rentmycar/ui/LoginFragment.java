@@ -1,6 +1,5 @@
 package avdinformatica.group1.rentmycar.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import avdinformatica.group1.rentmycar.R;
-import avdinformatica.group1.rentmycar.activities.SuccessfulLoginActivity;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.network.Network;
@@ -94,7 +92,7 @@ public class LoginFragment extends Fragment {
     private void setOnClickListeners() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (validateUsername() && validatePassword()) {
                     RegisterResponse registerResponse = new RegisterResponse(etEmail.getText().toString(), etPassword.getText().toString());
 
@@ -104,9 +102,10 @@ public class LoginFragment extends Fragment {
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                             if (response.body() != null) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity().getApplicationContext(), SuccessfulLoginActivity.class);
-                                intent.putExtra("email", response.body().getEmail());
-                                startActivity(intent);
+                                HomeFragment fragment = new HomeFragment();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("email", response.body().getEmail());
+                                Navigation.findNavController(view).navigate(R.id.action_login_to_home);
                             }
                         }
 

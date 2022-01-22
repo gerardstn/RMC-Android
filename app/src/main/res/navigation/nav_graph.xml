@@ -9,8 +9,8 @@
         android:name="avdinformatica.group1.rentmycar.ui.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_placeholder_to_placeholder2"
-            app:destination="@id/placeholder2" />
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/fragment_home" />
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register_fragment"
@@ -23,8 +23,10 @@
             app:destination="@id/placeholder11" />
     </fragment>
     <fragment
-        android:id="@+id/placeholder2"
-        android:label="Home screen after login">
+        android:id="@+id/fragment_home"
+        android:name="avdinformatica.group1.rentmycar.ui.HomeFragment"
+        android:label="Home screen after login"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_placeholder2_to_placeholder3"
             app:destination="@id/placeholder3" />

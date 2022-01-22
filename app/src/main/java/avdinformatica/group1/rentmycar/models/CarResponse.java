@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar.responseClasses;
+package avdinformatica.group1.rentmycar.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
 import javax.annotation.Generated;
 
 @Generated("com.robohorse.robopojogenerator")
-public class ResponseCarClass implements Serializable {
+public class CarResponse implements Serializable {
 
 
     @SerializedName("brand")
@@ -24,7 +24,7 @@ public class ResponseCarClass implements Serializable {
     private String price;
 
     //get available for rent cars
-    public ResponseCarClass(Boolean forRent) {
+    public CarResponse(Boolean forRent) {
         this.forRent = forRent;
     }
 

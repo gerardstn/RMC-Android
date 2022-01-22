@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar;
+package avdinformatica.group1.rentmycar.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,16 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import avdinformatica.group1.rentmycar.responseClasses.ResponseCarClass;
+import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.models.CarResponse;
 
 public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<AvailableCarRecyclerViewAdapter.ViewHolder>{
 
-    private ArrayList<ResponseCarClass> mData;
+    private ArrayList<CarResponse> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    AvailableCarRecyclerViewAdapter(Context context, ArrayList<ResponseCarClass> data) {
+    public AvailableCarRecyclerViewAdapter(Context context, ArrayList<CarResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -35,7 +36,7 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ResponseCarClass carModel = mData.get(position);
+        CarResponse carModel = mData.get(position);
         holder.tvCarModel.setText(carModel.getModel());
         holder.tvCarBrand.setText(carModel.getBrand());
         holder.tvCarDistance.setText(carModel.getDistance());
@@ -72,12 +73,12 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
     }
 
     // convenience method for getting data at click position
-    ResponseCarClass getItem(int id) {
+    public CarResponse getItem(int id) {
         return mData.get(id);
     }
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

@@ -1,4 +1,4 @@
-package avdinformatica.group1.rentmycar.responseClasses;
+package avdinformatica.group1.rentmycar.models;
 
 import javax.annotation.Generated;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 @Generated("com.robohorse.robopojogenerator")
-public class ResponseRegisterClass implements Serializable {
+public class RegisterResponse implements Serializable {
 
     @SerializedName("email")
     private String email;
@@ -31,7 +31,7 @@ public class ResponseRegisterClass implements Serializable {
         return password;
     }
 
-    public ResponseRegisterClass(String email, String password) {
+    public RegisterResponse(String email, String password) {
         this.email = email;
         this.password = password;
     }

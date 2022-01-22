@@ -1,26 +1,17 @@
-package avdinformatica.group1.rentmycar.CarRegistration;
+package avdinformatica.group1.rentmycar.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import avdinformatica.group1.rentmycar.R;
-import avdinformatica.group1.rentmycar.remote.ApiService;
-import avdinformatica.group1.rentmycar.remote.Network;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseClass;
-import avdinformatica.group1.rentmycar.responseClasses.ResponseRegisterClass;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class CarRegistrationActivity2 extends AppCompatActivity {
+public class CarRegistrationActivity extends AppCompatActivity {
 
     EditText brand;
     EditText model;
@@ -32,7 +23,7 @@ public class CarRegistrationActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.car_registration);
+        setContentView(R.layout.activity_car_registration);
 
 //        brand = (EditText) findViewById(R.id.editText1);
 //        model = (EditText) findViewById(R.id.editText2);

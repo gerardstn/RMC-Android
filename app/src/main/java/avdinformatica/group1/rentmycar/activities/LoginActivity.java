@@ -33,6 +33,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initializeListeners();
         onClickListeners();
+        Button btn1 = (Button) findViewById(R.id.btn1);
+        btn1.setOnClickListener(new View.OnClickListener() {
+
+
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
     private void onClickListeners() {

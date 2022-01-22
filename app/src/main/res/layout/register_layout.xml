@@ -16,7 +16,6 @@
         tools:layout_editor_absoluteY="48dp" />
 
 
-
     <EditText
         android:id="@+id/et_reg_email"
         android:textColor="#000000"
@@ -63,7 +62,7 @@
         android:layout_alignStart="@id/et_reg_password"
         android:layout_below="@id/et_reg_email"
         android:layout_marginTop="22dp"
-        android:text="Password"
+        android:text="Wachtwoord"
         android:textColor="#000000"
         android:textSize="14sp"
         />

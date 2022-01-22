@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import avdinformatica.group1.rentmycar.adapters.AvailableCarRecyclerViewAdapter;
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.models.CarResponse;
+import avdinformatica.group1.rentmycar.utils.Helper;
 
 public class RenteeActivity extends AppCompatActivity implements AvailableCarRecyclerViewAdapter.ItemClickListener {
 
@@ -46,24 +47,10 @@ public class RenteeActivity extends AppCompatActivity implements AvailableCarRec
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
-
-
-
-
-
-//        String brand = getIntent().getStringExtra("brand");
-//        String model = getIntent().getStringExtra("model");
-//        String distance = getIntent().getStringExtra("distance");
-//        int price = getIntent().getIntExtra("price", 99);
         tvCarBrand = findViewById(R.id.tv_car_brand);
         tvCarModel = findViewById(R.id.tv_car_model);
         tvCarDistance = findViewById(R.id.tv_car_distance);
         tvCarPrice = findViewById(R.id.tv_car_price_value);
-
-//        tvCarBrand.setText(brand);
-//        tvCarModel.setText(model);
-//        tvCarDistance.setText(distance);
-//        tvCarPrice.setText(""+price);
     }
 
     @Override

@@ -30,8 +30,15 @@ public class UserResponse implements Serializable {
     @SerializedName("price")
     private Integer price;
 
-    public void setId(int id) {
-        this.id = id;
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("surName")
+    private String surName;
+
+    public UserResponse(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public long getId() {
@@ -66,7 +73,9 @@ public class UserResponse implements Serializable {
         return distance;
     }
 
-    public Integer getPrice(){
-        return price;
-    }
+    public Integer getPrice() { return price; }
+
+    public String getName() { return name; }
+
+    public String getSurname() { return surName; }
 }

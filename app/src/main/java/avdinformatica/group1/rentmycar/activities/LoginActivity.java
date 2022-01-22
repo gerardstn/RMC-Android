@@ -11,11 +11,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.database.AppDatabase;
+import avdinformatica.group1.rentmycar.database.AppExecutors;
+import avdinformatica.group1.rentmycar.models.User;
 import avdinformatica.group1.rentmycar.services.ApiService;
 import avdinformatica.group1.rentmycar.network.Network;
 import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
+import avdinformatica.group1.rentmycar.utils.Helper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     TextView tvRegister;
     Button btnLogin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,14 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                             if (response.body() != null) {
+                                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AppDatabase appDatabase = AppDatabase.getInstance(LoginActivity.this);
+                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), Helper.generateRandomSessionString() );
+                                        appDatabase.userDao().insertUser(user);
+                                    }
+                                });
                                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, SuccessfulLoginActivity.class);
                                 intent.putExtra("email", response.body().getEmail());

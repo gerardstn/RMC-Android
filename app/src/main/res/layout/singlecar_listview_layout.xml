@@ -62,7 +62,17 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="1dp"
             android:layout_toEndOf="@+id/iv_car"
-            android:text="31km" />
+            android:text="31" />
+
+        <TextView
+            android:id="@+id/tv_car_distance_metric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_car_distance_title"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/tv_car_distance"
+            android:text="km" />
 
         <TextView
             android:id="@+id/tv_car_price_title"

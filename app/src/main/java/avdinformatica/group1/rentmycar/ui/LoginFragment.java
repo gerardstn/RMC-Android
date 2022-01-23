@@ -90,7 +90,6 @@ public class LoginFragment extends Fragment {
 
                                 Toast.makeText(getActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
 
-
                                 Bundle bundle = new Bundle();
                                 bundle.putString("sessionId", sessId);
 

@@ -28,25 +28,29 @@
         android:label="Home screen after login"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_placeholder2_to_placeholder3"
-            app:destination="@id/placeholder3" />
+            android:id="@+id/action_home_to_car_registraion"
+            app:destination="@id/fragment_car_registration" />
         <action
-            android:id="@+id/action_placeholder2_to_placeholder52"
-            app:destination="@id/placeholder5" />
+            android:id="@+id/action_home_to_for_rent"
+            app:destination="@id/fragment_for_rent" />
         <action
             android:id="@+id/action_placeholder2_to_placeholder11"
             app:destination="@id/placeholder11" />
     </fragment>
     <fragment
-        android:id="@+id/placeholder3"
-        android:label="Register own car">
+        android:id="@+id/fragment_car_registration"
+        android:name="avdinformatica.group1.rentmycar.ui.CarRegistrationFragment"
+        android:label="Register own car"
+        tools:layout="@layout/fragment_car_registration">
         <action
             android:id="@+id/action_placeholder3_to_placeholder9"
             app:destination="@id/placeholder9" />
     </fragment>
     <fragment
-        android:id="@+id/placeholder5"
-        android:label="Car list view" >
+        android:id="@+id/fragment_for_rent"
+        android:name="avdinformatica.group1.rentmycar.ui.ForRentFragment"
+        android:label="Car list view"
+        tools:layout="@layout/fragment_for_rent">
         <action
             android:id="@+id/action_placeholder5_to_placeholder7"
             app:destination="@id/placeholder7" />

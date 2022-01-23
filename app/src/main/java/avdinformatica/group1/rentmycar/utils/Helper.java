@@ -23,10 +23,10 @@ public class Helper {
     }
 
     /* Returns the units in meters. */
-    public static double calculateDistance(double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
+    public static int calculateDistance(double startLatitude, double startLongitude, double endLatitude, double endLongitude) {
         float[] results = new float[3];
         Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, results);
-        return results[0];
+        return (int) (results[0] / 1000);
     }
 
     public static String generateRandomSessionString() {

@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
 
         btnRentalCars.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
                 CarResponse carResponse = new CarResponse(true);
 
@@ -104,9 +104,11 @@ public class HomeFragment extends Fragment {
 
                         if (response.body() != null) {
                             Toast.makeText(getActivity().getApplicationContext(), "Cars loading", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getActivity().getApplicationContext(), RenteeActivity.class);
-                            intent.putExtra("carList", (Serializable) response.body());
-                            startActivity(intent);
+
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("carList", (Serializable) response.body());
+
+                            Navigation.findNavController(view).navigate(R.id.action_home_to_for_rent, bundle);
                         }
                     }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import avdinformatica.group1.rentmycar.services.GPSService;
 import avdinformatica.group1.rentmycar.utils.PermissionHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,8 +16,12 @@ public class MainActivity extends AppCompatActivity {
         PermissionHandler.permissionCheck(MainActivity.this);
         setContentView(R.layout.activity_main);
 
+        GPSService mGPS = new GPSService(this);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.rmclogo);
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item){

@@ -13,17 +13,23 @@ import java.util.ArrayList;
 
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.models.CarResponse;
+import avdinformatica.group1.rentmycar.services.GPSService;
+import avdinformatica.group1.rentmycar.utils.Helper;
 
 public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<AvailableCarRecyclerViewAdapter.ViewHolder>{
 
     private ArrayList<CarResponse> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private Context mContext;
+    private GPSService mGPS;
 
     // data is passed into the constructor
     public AvailableCarRecyclerViewAdapter(Context context, ArrayList<CarResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mContext = context;
+        this.mGPS = new GPSService(context);
     }
 
     // inflates the row layout from xml when needed
@@ -39,8 +45,15 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
         CarResponse carModel = mData.get(position);
         holder.tvCarModel.setText(carModel.getModel());
         holder.tvCarBrand.setText(carModel.getBrand());
-        holder.tvCarDistance.setText(carModel.getDistance());
         holder.tvCarPrice.setText(carModel.getPrice());
+
+        holder.tvCarDistance.setText(Double.toString(
+                Helper.calculateDistance(
+                    Helper.getLat(carModel.getDistance()),
+                    Helper.getLong(carModel.getDistance()),
+                        mGPS.getLatitude(),
+                        mGPS.getLongitude()
+                )));
     }
 
     // total number of rows
@@ -61,9 +74,10 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
             super(itemView);
             tvCarModel = itemView.findViewById(R.id.tv_car_model);
             tvCarBrand = itemView.findViewById(R.id.tv_car_brand);
-            tvCarDistance = itemView.findViewById(R.id.tv_car_distance);
             tvCarPrice = itemView.findViewById(R.id.tv_car_price_value);
             itemView.setOnClickListener(this);
+
+            tvCarDistance = itemView.findViewById(R.id.tv_car_distance);
         }
 
         @Override

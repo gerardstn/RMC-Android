@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_placeholder2_to_placeholder11"
             app:destination="@id/placeholder11" />
+        <action
+            android:id="@+id/action_home_to_camera"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_car_registration"
@@ -76,4 +79,9 @@
     <fragment
         android:id="@+id/placeholder11"
         android:label="About us screen" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="avdinformatica.group1.rentmycar.ui.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
 </navigation>

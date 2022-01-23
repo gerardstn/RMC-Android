@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
     User user;
     String sessionId;
     TextView tvEmail;
-    Button btnRegisterYourCar, btnRentalCars;
+    Button btnRegisterYourCar, btnRentalCars, btnCamera;
 
     private FusedLocationProviderClient fusedLocationProviderClient = null;
 
@@ -127,11 +127,19 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+
+        btnCamera.setOnClickListener(new View.OnClickListener(){
+           @Override
+           public void onClick(View view){
+               Navigation.findNavController(view).navigate(R.id.action_home_to_camera);
+           }
+        });
     }
 
     private void initializeListeners(View view) {
         btnRentalCars = view.findViewById(R.id.btn_RentalCars);
         btnRegisterYourCar = view.findViewById(R.id.btn_register_your_car);
+        btnCamera = view.findViewById(R.id.btn_camera);
     }
 
 }

@@ -1,5 +1,6 @@
 package avdinformatica.group1.rentmycar.ui;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -35,7 +36,6 @@ public class HomeFragment extends Fragment {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString("sessionId", sessionId);
-        Log.d("Session ID: ", sessionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,25 +47,19 @@ public class HomeFragment extends Fragment {
             sessionId = getArguments().getString("sessionId");
         }
 
-        System.out.println(sessionId);
+        AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
+        user = appDatabase.userDao().getUser(sessionId);
 
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
-                user = appDatabase.userDao().getUser(sessionId);
-            }
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        sessionId = getArguments().getString(SESSION_ID);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         tvEmail = view.findViewById(R.id.tv_Email);
-//        tvEmail.setText(user.getEmail());
+        tvEmail.setText(user.getEmail());
         return view;
     }
+
 }

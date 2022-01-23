@@ -21,6 +21,14 @@ public final class PermissionHandler {
             != 0 && !ActivityCompat.shouldShowRequestPermissionRationale(activity, "android.permission.ACCESS_FINE_LOCATION")){
             ActivityCompat.requestPermissions(activity, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, REQUEST_CODE);
         }
+        if(ContextCompat.checkSelfPermission((Context) activity, "android.permission.ACCESS_COARSE_LOCATION")
+                != 0 && !ActivityCompat.shouldShowRequestPermissionRationale(activity, "android.permission.ACCESS_COASRE_LOCATION")){
+            ActivityCompat.requestPermissions(activity, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, REQUEST_CODE);
+        }
+        if(ContextCompat.checkSelfPermission((Context) activity, "android.permission.CAMERA")
+                != 0 && !ActivityCompat.shouldShowRequestPermissionRationale(activity, "android.permission.CAMERA")) {
+            ActivityCompat.requestPermissions(activity, new String[]{"android.permission.CAMERA"}, REQUEST_CODE);
+        }
     }
 
     private PermissionHandler(){

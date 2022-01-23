@@ -3,12 +3,14 @@ package avdinformatica.group1.rentmycar.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,17 +19,17 @@ import java.util.ArrayList;
 
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.adapters.AvailableCarRecyclerViewAdapter;
+import avdinformatica.group1.rentmycar.database.AppDatabase;
+import avdinformatica.group1.rentmycar.database.AppExecutors;
+import avdinformatica.group1.rentmycar.models.Car;
 import avdinformatica.group1.rentmycar.models.CarResponse;
+import avdinformatica.group1.rentmycar.models.User;
 
 public class ForRentFragment extends Fragment implements AvailableCarRecyclerViewAdapter.ItemClickListener {
 
     AvailableCarRecyclerViewAdapter adapter;
 
-    TextView tvCarBrand;
-    TextView tvCarModel;
-    TextView tvCarDistance;
-    TextView tvCarPrice;
-
+    TextView tvCarBrand, tvCarModel, tvCarDistance, tvCarPrice;
     ArrayList<CarResponse> carList;
 
     public ForRentFragment() {
@@ -61,6 +63,17 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
             carDetails.add(carList.get(i));
         }
 
+//        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
+//
+//
+//                appDatabase.carDao().insertCarList(carList);
+//            }
+//        });
+
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_available_cars);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
@@ -78,6 +91,11 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity().getApplicationContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+
+        Bundle bundle = new Bundle();
+        bundle.putLong("carId", adapter.getItem(position).getCarId());
+
+        Navigation.findNavController(view).navigate(R.id.action_fragment_for_rent_to_fragment_for_rent_detail, bundle);
+        Toast.makeText(getActivity().getApplicationContext(), "You clicked " + adapter.getItem(position).getCarId() + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 }

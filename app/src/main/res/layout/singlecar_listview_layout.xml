@@ -3,18 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/gray"
+    android:layout_marginBottom="5dp">
 
 
         <ImageView
             android:id="@+id/iv_car"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/carplaceholder"  />
+            android:background="@drawable/carplaceholder"  />
 
         <TextView
             android:id="@+id/tv_car_brand"
@@ -59,11 +62,21 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="1dp"
             android:layout_toEndOf="@+id/iv_car"
-            android:text="31km" />
+            android:text="31" />
+
+        <TextView
+            android:id="@+id/tv_car_distance_metric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_car_distance_title"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/tv_car_distance"
+            android:text="km" />
 
         <TextView
             android:id="@+id/tv_car_price_title"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_car_distance"
             android:layout_marginStart="5dp"
@@ -93,20 +106,5 @@
             android:layout_toEndOf="@+id/tv_car_price_valuta"
             android:text="250" />
 
-        <Button
-            android:id="@+id/btn_reserve_car"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_car"
-            android:layout_alignBottom="@+id/iv_car"
-            android:background="@drawable/button_rectangle_cyan"
-            android:textColor="#ffffff"
-            app:backgroundTint="@color/cyan"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="121dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/iv_car"
-            android:text="Details" />
+
 </RelativeLayout>

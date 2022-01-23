@@ -6,9 +6,11 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import avdinformatica.group1.rentmycar.models.Car;
+import avdinformatica.group1.rentmycar.models.CarResponse;
 
 @Dao
 public interface CarDao {

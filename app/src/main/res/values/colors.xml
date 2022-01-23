@@ -8,4 +8,5 @@
     <color name="cyan">#4EC7FC</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#F1F1F1F1</color>
 </resources>

@@ -83,7 +83,7 @@ public class LoginFragment extends Fragment {
                                     public void run() {
 
                                         AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
-                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), sessId );
+                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), sessId, response.body().getId() );
                                         appDatabase.userDao().insertUser(user);
                                     }
                                 });

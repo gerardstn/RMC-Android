@@ -16,6 +16,15 @@ public class User {
     @PrimaryKey
     @NonNull
     private String sessionId;
+    private Long clientId;
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
 
     public String getEmail() {
         return email;
@@ -49,10 +58,11 @@ public class User {
         this.sessionId = sessionId;
     }
 
-    public User(String email, String name, String surName, String sessionId) {
+    public User(String email, String name, String surName, @NonNull String sessionId, Long clientId) {
         this.email = email;
         this.name = name;
         this.surName = surName;
         this.sessionId = sessionId;
+        this.clientId = clientId;
     }
 }

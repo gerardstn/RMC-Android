@@ -1,21 +1,37 @@
 package avdinformatica.group1.rentmycar.ui;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.Serializable;
+import java.util.List;
 
 import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.activities.CarRegistrationActivity;
+import avdinformatica.group1.rentmycar.activities.RenteeActivity;
+import avdinformatica.group1.rentmycar.activities.SuccessfulLoginActivity;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
 import avdinformatica.group1.rentmycar.database.AppExecutors;
+import avdinformatica.group1.rentmycar.models.CarResponse;
 import avdinformatica.group1.rentmycar.models.User;
+import avdinformatica.group1.rentmycar.network.Network;
+import avdinformatica.group1.rentmycar.services.ApiService;
 import avdinformatica.group1.rentmycar.utils.Helper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +43,7 @@ public class HomeFragment extends Fragment {
     User user;
     String sessionId;
     TextView tvEmail;
+    Button btnRegisterYourCar, btnRentalCars;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -49,7 +66,6 @@ public class HomeFragment extends Fragment {
 
         AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
         user = appDatabase.userDao().getUser(sessionId);
-
     }
 
     @Override
@@ -59,7 +75,53 @@ public class HomeFragment extends Fragment {
 
         tvEmail = view.findViewById(R.id.tv_Email);
         tvEmail.setText(user.getEmail());
+
+        initializeListeners(view);
+        onClickListeners();
+
         return view;
+    }
+
+    private void onClickListeners() {
+        btnRegisterYourCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Navigation.findNavController(view).navigate(R.id.action_home_to_car_registraion);
+            }
+        });
+
+        btnRentalCars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CarResponse carResponse = new CarResponse(true);
+
+                ApiService apiService = Network.getInstance().create(ApiService.class);
+                apiService.getAvailableCars(carResponse).enqueue(new Callback<List<CarResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<CarResponse>> call, Response<List<CarResponse>> response) {
+
+                        if (response.body() != null) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Cars loading", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity().getApplicationContext(), RenteeActivity.class);
+                            intent.putExtra("carList", (Serializable) response.body());
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<CarResponse>> call, Throwable t) {
+                        Toast.makeText(getActivity().getApplicationContext(), "Unable to retrieve available cars", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    private void initializeListeners(View view) {
+        btnRentalCars = view.findViewById(R.id.btn_RentalCars);
+        btnRegisterYourCar = view.findViewById(R.id.btn_register_your_car);
     }
 
 }

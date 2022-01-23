@@ -1,13 +1,10 @@
 package avdinformatica.group1.rentmycar.ui;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +16,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import avdinformatica.group1.rentmycar.R;
-import avdinformatica.group1.rentmycar.activities.CarRegistrationActivity;
-import avdinformatica.group1.rentmycar.activities.RenteeActivity;
-import avdinformatica.group1.rentmycar.activities.SuccessfulLoginActivity;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
-import avdinformatica.group1.rentmycar.database.AppExecutors;
 import avdinformatica.group1.rentmycar.models.CarResponse;
 import avdinformatica.group1.rentmycar.models.User;
 import avdinformatica.group1.rentmycar.network.Network;
 import avdinformatica.group1.rentmycar.services.ApiService;
-import avdinformatica.group1.rentmycar.utils.Helper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

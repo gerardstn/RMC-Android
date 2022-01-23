@@ -1,52 +1,73 @@
-package avdinformatica.group1.rentmycar.activities;
+package avdinformatica.group1.rentmycar.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Random;
-
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
 import avdinformatica.group1.rentmycar.database.AppExecutors;
-import avdinformatica.group1.rentmycar.models.User;
-import avdinformatica.group1.rentmycar.services.ApiService;
-import avdinformatica.group1.rentmycar.network.Network;
-import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
+import avdinformatica.group1.rentmycar.models.User;
+import avdinformatica.group1.rentmycar.models.UserResponse;
+import avdinformatica.group1.rentmycar.network.Network;
+import avdinformatica.group1.rentmycar.services.ApiService;
 import avdinformatica.group1.rentmycar.utils.Helper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginFragment extends Fragment {
 
     EditText etEmail, etPassword;
     TextView tvRegister;
     Button btnLogin;
 
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initializeListeners();
-        onClickListeners();
+    public LoginFragment() {
+        // Required empty public constructor
     }
 
-    private void onClickListeners() {
+    public static LoginFragment newInstance() {
+        LoginFragment fragment = new LoginFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        etEmail = view.findViewById(R.id.et_email);
+        etPassword = view.findViewById(R.id.et_password);
+        tvRegister = view.findViewById(R.id.tv_register);
+        btnLogin = view.findViewById(R.id.btn_login);
+
+        setOnClickListeners();
+
+        return view;
+    }
+
+    private void setOnClickListeners() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (validateUsername() && validatePassword()) {
                     RegisterResponse registerResponse = new RegisterResponse(etEmail.getText().toString(), etPassword.getText().toString());
 
@@ -54,25 +75,35 @@ public class LoginActivity extends AppCompatActivity {
                     apiService.getUser(registerResponse).enqueue(new Callback<UserResponse>() {
                         @Override
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                            String sessId = Helper.generateRandomSessionString();
                             if (response.body() != null) {
+
                                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                                     @Override
                                     public void run() {
-                                        AppDatabase appDatabase = AppDatabase.getInstance(LoginActivity.this);
-                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), Helper.generateRandomSessionString() );
+
+                                        AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
+                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), sessId );
                                         appDatabase.userDao().insertUser(user);
                                     }
                                 });
-                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, SuccessfulLoginActivity.class);
-                                intent.putExtra("email", response.body().getEmail());
-                                startActivity(intent);
+
+                                Toast.makeText(getActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+
+
+                                Bundle bundle = new Bundle();
+                                bundle.putString("sessionId", sessId);
+
+                                HomeFragment fragment = new HomeFragment();
+                                fragment.setArguments(bundle);
+
+                                Navigation.findNavController(view).navigate(R.id.action_login_to_home, bundle);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<UserResponse> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -83,11 +114,10 @@ public class LoginActivity extends AppCompatActivity {
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_login_to_register);
             }
         });
-
     }
 
     private boolean validateUsername() {
@@ -108,10 +138,4 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-    private void initializeListeners() {
-        etEmail = findViewById(R.id.et_email);
-        etPassword = findViewById(R.id.et_password);
-        tvRegister = findViewById(R.id.tv_register);
-        btnLogin = findViewById(R.id.btn_login);
-    }
 }

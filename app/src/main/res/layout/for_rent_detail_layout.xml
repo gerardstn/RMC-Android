@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_car_details"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/carplaceholder"  />
+
+    <TextView
+        android:id="@+id/tv_car_details_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_car_details"
+        android:layout_marginStart="5dp"
+        android:text="Car Brand"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_car_details_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_car_details_brand"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/tv_car_details_brand"
+        android:text="Model" />
+
+    <TextView
+        android:id="@+id/tv_car_details_distance_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_model"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Afstand:"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_car_details_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_distance_title"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:text="31km" />
+
+    <TextView
+        android:id="@+id/tv_car_details_price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_distance"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="Gemiddelde kosten (p/u):"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_car_details_price_valuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_price_title"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:text="€" />
+
+    <TextView
+        android:id="@+id/tv_car_details_price_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_price_title"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/tv_car_details_price_valuta"
+        android:text="250" />
+
+    <TextView
+        android:id="@+id/tv_car_details_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_car_details"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:text="Autotype" />
+
+    <TextView
+        android:id="@+id/tv_car_details_type_fuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_type"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:text="Brandstof" />
+
+    <TextView
+        android:id="@+id/tv_car_details_usage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_type_fuel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:text="Verbruik" />
+
+    <TextView
+        android:id="@+id/tv_car_reserve_start_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_price_value"
+        android:layout_alignStart="@+id/et_car_reserve_start_date"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="Van:" />
+
+    <EditText
+        android:id="@+id/et_car_reserve_start_date"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_car_reserve_start_date_title"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:ems="10"
+        android:inputType="datetime"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tv_car_reserve_end_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_car_reserve_start_date"
+        android:layout_alignStart="@+id/et_car_reserve_start_date"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:text="Tot:" />
+
+    <EditText
+        android:id="@+id/et_car_reserve_end_date"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_car_reserve_end_date_title"
+        android:layout_centerHorizontal="true"
+        android:background="#11000000"
+        android:ems="10"
+        android:inputType="datetime"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/btn_car_details_reserve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_car_reserve_end_date"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/button_rectangle_cyan"
+        android:text="Reserveren"
+        android:textColor="#ffffff"
+        app:backgroundTint="@color/cyan" />
+
+
+</RelativeLayout>

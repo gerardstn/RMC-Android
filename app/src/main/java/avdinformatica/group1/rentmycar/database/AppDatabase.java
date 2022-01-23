@@ -14,7 +14,7 @@ import avdinformatica.group1.rentmycar.models.User;
 public abstract class AppDatabase extends RoomDatabase {
     private static final String LOG_TAG = AppDatabase.class.getSimpleName();
     private static final Object LOCK = new Object();
-    private static final String DATABASE_NAME = "rmc-room";
+    private static final String DATABASE_NAME = "rmc-room-db";
     private static AppDatabase sInstance;
 
     public static synchronized AppDatabase getInstance(Context context) {
@@ -28,8 +28,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         Log.d(LOG_TAG, "Getting the database instance");
         return sInstance;
-
-
     }
 
     public abstract UserDao userDao();

@@ -43,8 +43,8 @@
         android:label="Register own car"
         tools:layout="@layout/fragment_car_registration">
         <action
-            android:id="@+id/action_placeholder3_to_placeholder9"
-            app:destination="@id/placeholder9" />
+            android:id="@+id/fragment_car_registration_to_thanks_for_submission"
+            app:destination="@id/fragment_thanks_for_submission" />
     </fragment>
     <fragment
         android:id="@+id/fragment_for_rent"
@@ -52,8 +52,8 @@
         android:label="Car list view"
         tools:layout="@layout/fragment_for_rent">
         <action
-            android:id="@+id/action_placeholder5_to_placeholder7"
-            app:destination="@id/placeholder7" />
+            android:id="@+id/action_fragment_for_rent_to_fragment_for_rent_detail"
+            app:destination="@id/fragment_for_rent_detail" />
     </fragment>
     <fragment
         android:id="@+id/register_fragment"
@@ -61,18 +61,19 @@
         android:label="Registration screen"
         tools:layout="@layout/fragment_register" />
     <fragment
-        android:id="@+id/placeholder7"
-        android:label="Car detail screen" >
+        android:id="@+id/fragment_for_rent_detail"
+        android:name="avdinformatica.group1.rentmycar.ui.ForRentDetailFragment"
+        android:label="Car detail screen"
+        tools:layout="@layout/fragment_for_rent_detail">
         <action
-            android:id="@+id/action_placeholder7_to_placeholder8"
-            app:destination="@id/placeholder8" />
+            android:id="@+id/fragment_for_rent_to_thanks_for_submission"
+            app:destination="@id/fragment_thanks_for_submission" />
     </fragment>
     <fragment
-        android:id="@+id/placeholder8"
-        android:label="Car rent screen" />
-    <fragment
-        android:id="@+id/placeholder9"
-        android:label="Car registered" />
+        android:id="@+id/fragment_thanks_for_submission"
+        android:name="avdinformatica.group1.rentmycar.ui.ThanksForSubmittingFragment"
+        android:label="Car rent screen"
+        tools:layout="@layout/fragment_thanks_for_submitting" />
     <fragment
         android:id="@+id/placeholder11"
         android:label="About us screen" />

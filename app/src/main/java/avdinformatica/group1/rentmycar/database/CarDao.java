@@ -18,6 +18,9 @@ public interface CarDao {
     @Query("Select * from Car")
     List<Car> getCarList();
 
+    @Query("Select * from Car WHERE carId=:carId")
+    Car getCar(Long carId);
+
     @Insert
     void insertCar(Car car);
 

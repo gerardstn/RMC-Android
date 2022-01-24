@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "car")
 public class Car {
     private String licensePlate;
+    @Nullable
     private String hyperlink;
     @PrimaryKey
     private Long carId;
@@ -16,7 +17,7 @@ public class Car {
     private String model;
     private String pickupLocationCoordinates;
     private Long clientId;
-    private Integer price;
+    private String price;
     private String fuelType;
     @Nullable
     private Double fuelUsage;
@@ -25,9 +26,8 @@ public class Car {
     @Nullable
     private Double batteryUsage;
 
-    public Car(String licensePlate, String hyperlink, Long carId, String carType, String brand, String model, String pickupLocationCoordinates, Long clientId, Integer price, String fuelType, @Nullable Double fuelUsage, @Nullable Double hydrogenUsage, @Nullable Double batteryUsage) {
+    public Car(String licensePlate, Long carId, String carType, String brand, String model, String pickupLocationCoordinates, Long clientId, String price, String fuelType, @Nullable Double fuelUsage, @Nullable Double hydrogenUsage, @Nullable Double batteryUsage) {
         this.licensePlate = licensePlate;
-        this.hyperlink = hyperlink;
         this.carId = carId;
         this.carType = carType;
         this.brand = brand;
@@ -105,11 +105,11 @@ public class Car {
         this.clientId = clientId;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

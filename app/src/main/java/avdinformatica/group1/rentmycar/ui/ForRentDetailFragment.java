@@ -1,41 +1,40 @@
 package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import avdinformatica.group1.rentmycar.R;
+import avdinformatica.group1.rentmycar.database.AppDatabase;
+import avdinformatica.group1.rentmycar.models.Car;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ForRentDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ForRentDetailFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "carId";
 
-    // TODO: Rename and change types of parameters
     private Long mCarId;
+    Car car;
+    TextView tvCarDetailsBrand, tvCarDetailsModel, tvCarDetailsDistance, tvCarDetailsPrice, tvCarDetailsType, tvCarDetailsFuel, tvCarDetailsUsage;
+
+    EditText etCarReserveStartDate, etCarReserveEndDate;
+    Date currentTime = Calendar.getInstance().getTime();
+
 
     public ForRentDetailFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment ForRentDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static ForRentDetailFragment newInstance(Long param1) {
         ForRentDetailFragment fragment = new ForRentDetailFragment();
         Bundle args = new Bundle();
@@ -47,17 +46,43 @@ public class ForRentDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
+
+
         if (getArguments() != null) {
             mCarId = getArguments().getLong(ARG_PARAM1);
+            car = appDatabase.carDao().getCar(mCarId);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_for_rent_detail, container, false);
-    }
-}
 
-//TODO: room db auto toevoegen, en vervolgens hier de room db data ophalen
+        View view = inflater.inflate(R.layout.fragment_for_rent_detail, container, false);
+
+//        etCarReserveStartDate = view.findViewById(R.id.et_car_reserve_start_date);
+//        etCarReserveEndDate = view.findViewById(R.id.et_car_reserve_end_date);
+
+        tvCarDetailsBrand = view.findViewById(R.id.tv_car_details_brand);
+        tvCarDetailsModel = view.findViewById(R.id.tv_car_details_model);
+        tvCarDetailsDistance = view.findViewById(R.id.tv_car_details_distance);
+        tvCarDetailsPrice = view.findViewById(R.id.tv_car_details_price_value);
+        tvCarDetailsType = view.findViewById(R.id.tv_car_details_type);
+        tvCarDetailsFuel = view.findViewById(R.id.tv_car_details_type_fuel);
+        tvCarDetailsUsage = view.findViewById(R.id.tv_car_details_usage);
+
+        tvCarDetailsBrand.setText(car.getBrand());
+        tvCarDetailsModel.setText(car.getModel());
+        tvCarDetailsDistance.setText(car.getPickupLocationCoordinates());
+        tvCarDetailsPrice.setText(car.getPrice());
+        tvCarDetailsType.setText(car.getCarType());
+        tvCarDetailsFuel.setText(car.getFuelType());
+        tvCarDetailsUsage.setText("" + car.getFuelUsage());
+
+        return view;
+    }
+
+
+}

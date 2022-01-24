@@ -36,6 +36,33 @@ public class CarResponse implements Serializable {
     @Nullable
     private Double batteryUsage;
 
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    @Nullable
+    public Double getFuelUsage() {
+        return fuelUsage;
+    }
+
+    @Nullable
+    public Double getHydrogenUsage() {
+        return hydrogenUsage;
+    }
+
+    @Nullable
+    public Double getBatteryUsage() {
+        return batteryUsage;
+    }
+
     public Long getCarId() {
         return carId;
     }
@@ -68,5 +95,21 @@ public class CarResponse implements Serializable {
     public String getPrice() {
         return price;
     }
+
+    public Car toCar(){
+        return new Car(this.getLicensePlate(),
+                this.getCarId(),
+                this.getCarType(),
+                this.getBrand(),
+                this.getModel(),
+                this.getDistance(),
+                this.getClientId(),
+                this.getPrice(),
+                this.getFuelType(),
+                this.getFuelUsage(),
+                this.getHydrogenUsage(),
+                this.getBatteryUsage());
+    }
+
 
 }

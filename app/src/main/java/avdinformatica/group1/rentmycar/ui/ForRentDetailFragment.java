@@ -15,6 +15,8 @@ import java.util.Date;
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
 import avdinformatica.group1.rentmycar.models.Car;
+import avdinformatica.group1.rentmycar.services.GPSService;
+import avdinformatica.group1.rentmycar.utils.Helper;
 
 
 public class ForRentDetailFragment extends Fragment {
@@ -22,6 +24,7 @@ public class ForRentDetailFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "carId";
 
+    private GPSService mGPS;
     private Long mCarId;
     Car car;
     TextView tvCarDetailsBrand, tvCarDetailsModel, tvCarDetailsDistance, tvCarDetailsPrice, tvCarDetailsType, tvCarDetailsFuel, tvCarDetailsUsage;
@@ -32,6 +35,7 @@ public class ForRentDetailFragment extends Fragment {
 
     public ForRentDetailFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -59,7 +63,7 @@ public class ForRentDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        mGPS = new GPSService(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_for_rent_detail, container, false);
 
 //        etCarReserveStartDate = view.findViewById(R.id.et_car_reserve_start_date);
@@ -75,7 +79,15 @@ public class ForRentDetailFragment extends Fragment {
 
         tvCarDetailsBrand.setText(car.getBrand());
         tvCarDetailsModel.setText(car.getModel());
-        tvCarDetailsDistance.setText(car.getPickupLocationCoordinates());
+
+        tvCarDetailsDistance.setText(Double.toString(
+                Helper.calculateDistance(
+                        Helper.getLat(car.getPickupLocationCoordinates()),
+                        Helper.getLong(car.getPickupLocationCoordinates()),
+                        mGPS.getLatitude(),
+                        mGPS.getLongitude()
+                )));
+
         tvCarDetailsPrice.setText(car.getPrice());
         tvCarDetailsType.setText(car.getCarType());
         tvCarDetailsFuel.setText(car.getFuelType());

@@ -1,5 +1,6 @@
 package avdinformatica.group1.rentmycar.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -58,21 +59,10 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
 
         View view = inflater.inflate(R.layout.fragment_for_rent, container, false);
 
-        ArrayList<CarResponse> carDetails = new ArrayList<CarResponse>();
-        for (int i = 0; i < carList.size(); i++){
-            carDetails.add(carList.get(i));
-        }
+        ArrayList<CarResponse> carDetails = new ArrayList<CarResponse>(carList);
 
-//        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
-//
-//
-//                appDatabase.carDao().insertCarList(carList);
-//            }
-//        });
+        AppExecutors.getInstance().diskIO().execute(new CarImporter(carList, getActivity().getApplicationContext()));
+
 
         // set up the RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.rv_available_cars);
@@ -96,6 +86,34 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
         bundle.putLong("carId", adapter.getItem(position).getCarId());
 
         Navigation.findNavController(view).navigate(R.id.action_fragment_for_rent_to_fragment_for_rent_detail, bundle);
+
         Toast.makeText(getActivity().getApplicationContext(), "You clicked " + adapter.getItem(position).getCarId() + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
+
+
+    class CarImporter implements Runnable {
+
+        private final ArrayList<CarResponse> carList;
+        private final AppDatabase appDatabase;
+
+        public CarImporter(ArrayList<CarResponse> carList, Context applicationContext) {
+            this.appDatabase = AppDatabase.getInstance(applicationContext);
+            this.carList = carList;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < carList.size(); i++) {
+                Car car = carList.get(i).toCar();
+
+                if (appDatabase.carDao().getCar(car.getCarId()) != null) {
+                    appDatabase.carDao().updateCar(car);
+                } else {
+                    appDatabase.carDao().insertCar(car);
+                }
+            }
+        }
+    }
+
+
 }

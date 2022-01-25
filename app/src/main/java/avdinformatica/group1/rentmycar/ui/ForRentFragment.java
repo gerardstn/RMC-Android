@@ -29,7 +29,7 @@ import avdinformatica.group1.rentmycar.models.User;
 public class ForRentFragment extends Fragment implements AvailableCarRecyclerViewAdapter.ItemClickListener {
 
     AvailableCarRecyclerViewAdapter adapter;
-
+    String sessionId;
     TextView tvCarBrand, tvCarModel, tvCarDistance, tvCarPrice;
     ArrayList<CarResponse> carList;
 
@@ -37,10 +37,11 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
         // Required empty public constructor
     }
 
-    public static ForRentFragment newInstance(Serializable carList) {
+    public static ForRentFragment newInstance(Serializable carList, String sessionId) {
         ForRentFragment fragment = new ForRentFragment();
         Bundle args = new Bundle();
         args.putSerializable("carList", carList);
+        args.putString("sessionId", sessionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,6 +50,7 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            sessionId = getArguments().getString("sessionId");
             carList = (ArrayList<CarResponse>) getArguments().getSerializable("carList");
         }
     }

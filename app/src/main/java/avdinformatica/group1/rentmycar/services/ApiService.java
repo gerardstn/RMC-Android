@@ -3,6 +3,7 @@ package avdinformatica.group1.rentmycar.services;
 import java.util.List;
 
 import avdinformatica.group1.rentmycar.models.CarResponse;
+import avdinformatica.group1.rentmycar.models.RegisterCarResponse;
 import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import retrofit2.Call;
@@ -20,4 +21,7 @@ public interface ApiService {
 
     @POST("/api/v1/cars/available")
     Call<List<CarResponse>> getAvailableCars(@Body CarResponse carResponse);
+
+    @PUT("/api/v1/cars/available")
+    Call<UserResponse> addCar(@Body RegisterCarResponse registerCarResponse);
 }

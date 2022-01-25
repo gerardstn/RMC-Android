@@ -1,20 +1,22 @@
 package avdinformatica.group1.rentmycar.ui;
 
-import static android.app.Activity.RESULT_CANCELED;
-
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import java.io.ByteArrayOutputStream;
 
 import avdinformatica.group1.rentmycar.R;
 
@@ -29,7 +31,8 @@ public class CameraFragment extends Fragment {
     private static final int RESULT_OK = 1;
     Button btnCapture;
     ImageView imgCapture;
-    private static final int Image_Capture_Code = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
 
 
     public CameraFragment() {
@@ -59,26 +62,50 @@ public class CameraFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == Image_Capture_Code) {
-            if (resultCode == RESULT_OK) {
-                Bitmap bp = (Bitmap) data.getExtras().get("data");
-                imgCapture.setImageBitmap(bp);
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_LONG).show();
-            }
-        } 
-    }
+
 
     private void setOnClickListeners()
     {
         btnCapture.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("QueryPermissionsNeeded")
             @Override
             public void onClick(View view) {
-                Intent cIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cIntent, Image_Capture_Code);
+                dispatchTakePictureIntent();
             }
         });
     }
+
+    private void dispatchTakePictureIntent(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(takePictureIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        } catch (ActivityNotFoundException e){
+
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                Bitmap bmp = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                // convert byte array to Bitmap
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0,
+                        byteArray.length);
+
+                imgCapture.setImageBitmap(bitmap);
+
+            }
+        }
+    }
+
 }

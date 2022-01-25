@@ -88,10 +88,21 @@ public class ForRentDetailFragment extends Fragment {
                         mGPS.getLongitude()
                 )));
 
+        if(car.getCarType().equals("IceCar")){
+            tvCarDetailsType.setText("Brandstof motor");
+            tvCarDetailsFuel.setText(car.getFuelType());
+            tvCarDetailsUsage.setText(car.getFuelUsage() + "l op 100km");
+        }else if(car.getCarType().equals("BevCar")){
+            tvCarDetailsType.setText("Elektrisch");
+            tvCarDetailsFuel.setText(car.getFuelType());
+            tvCarDetailsUsage.setText(car.getBatteryUsage()+ "KWH op 100km");
+        }else if(car.getCarType().equals("FcevCar")){
+            tvCarDetailsType.setText("Waterstof");
+            tvCarDetailsFuel.setText(car.getFuelType());
+            tvCarDetailsUsage.setText(car.getHydrogenUsage()+ "kg op 100km");
+        }
+
         tvCarDetailsPrice.setText(car.getPrice());
-        tvCarDetailsType.setText(car.getCarType());
-        tvCarDetailsFuel.setText(car.getFuelType());
-        tvCarDetailsUsage.setText("" + car.getFuelUsage());
 
         return view;
     }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -99,7 +100,8 @@ public class ForRentDetailFragment extends Fragment {
                         public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
                             if (response.body() != null) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Reservation successful", Toast.LENGTH_SHORT).show();
-                                getParentFragmentManager().popBackStack();
+                                HomeFragment fragment = new HomeFragment();
+                                Navigation.findNavController(v).navigate(R.id.fragment_thanks_for_submission);
                             } else {
                                 Toast.makeText(getActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
                             }

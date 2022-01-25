@@ -93,14 +93,8 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_thanks_for_submission"
-        android:name="avdinformatica.group1.rentmycar.ui.ThanksForSubmittingFragment"
         android:label="Car rent screen"
-        tools:layout="@layout/fragment_thanks_for_submitting" >
-        <action
-            android:id="@+id/action_fragment_thanks_for_submission_pop_including_fragment_car_registration"
-            app:popUpTo="@id/fragment_home"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_thanks_for_submitting"/>
     <fragment
         android:id="@+id/cameraFragment"
         android:name="avdinformatica.group1.rentmycar.ui.CameraFragment"

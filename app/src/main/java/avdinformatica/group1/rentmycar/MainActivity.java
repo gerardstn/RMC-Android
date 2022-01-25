@@ -1,11 +1,12 @@
 package avdinformatica.group1.rentmycar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import avdinformatica.group1.rentmycar.services.GPSService;
 import avdinformatica.group1.rentmycar.utils.PermissionHandler;
@@ -105,4 +106,10 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

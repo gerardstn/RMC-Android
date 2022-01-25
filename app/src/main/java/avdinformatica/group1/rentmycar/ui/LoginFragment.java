@@ -88,6 +88,12 @@ public class LoginFragment extends Fragment {
                                     }
                                 });
 
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
                                 Toast.makeText(getActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
 
                                 Bundle bundle = new Bundle();

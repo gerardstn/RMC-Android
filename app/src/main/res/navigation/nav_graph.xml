@@ -19,8 +19,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_placeholder_to_placeholder11"
-            app:destination="@id/placeholder11" />
+            android:id="@+id/action_fragment_login_pop"
+            app:popUpTo="@id/fragment_login"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_home"
@@ -34,11 +35,12 @@
             android:id="@+id/action_home_to_for_rent"
             app:destination="@id/fragment_for_rent" />
         <action
-            android:id="@+id/action_placeholder2_to_placeholder11"
-            app:destination="@id/placeholder11" />
-        <action
             android:id="@+id/action_home_to_camera"
             app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_fragment_home_pop_including_fragment_login"
+            app:popUpTo="@id/fragment_login"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_car_registration"
@@ -48,6 +50,10 @@
         <action
             android:id="@+id/fragment_car_registration_to_thanks_for_submission"
             app:destination="@id/fragment_thanks_for_submission" />
+        <action
+            android:id="@+id/action_fragment_car_registration_pop_including_fragment_home"
+            app:popUpTo="@id/fragment_home"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_for_rent"
@@ -57,12 +63,21 @@
         <action
             android:id="@+id/action_fragment_for_rent_to_fragment_for_rent_detail"
             app:destination="@id/fragment_for_rent_detail" />
+        <action
+            android:id="@+id/action_fragment_for_rent_pop_including_fragment_home"
+            app:popUpTo="@id/fragment_home"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/register_fragment"
         android:name="avdinformatica.group1.rentmycar.ui.RegisterFragment"
         android:label="Registration screen"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_fragment_pop_including_fragment_login"
+            app:popUpTo="@id/fragment_login"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_for_rent_detail"
         android:name="avdinformatica.group1.rentmycar.ui.ForRentDetailFragment"
@@ -71,18 +86,29 @@
         <action
             android:id="@+id/fragment_for_rent_to_thanks_for_submission"
             app:destination="@id/fragment_thanks_for_submission" />
+        <action
+            android:id="@+id/action_fragment_for_rent_detail_pop_including_fragment_for_rent"
+            app:popUpTo="@id/fragment_for_rent"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_thanks_for_submission"
         android:name="avdinformatica.group1.rentmycar.ui.ThanksForSubmittingFragment"
         android:label="Car rent screen"
-        tools:layout="@layout/fragment_thanks_for_submitting" />
-    <fragment
-        android:id="@+id/placeholder11"
-        android:label="About us screen" />
+        tools:layout="@layout/fragment_thanks_for_submitting" >
+        <action
+            android:id="@+id/action_fragment_thanks_for_submission_pop_including_fragment_car_registration"
+            app:popUpTo="@id/fragment_home"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/cameraFragment"
         android:name="avdinformatica.group1.rentmycar.ui.CameraFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_pop_including_fragment_home"
+            app:popUpTo="@id/fragment_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

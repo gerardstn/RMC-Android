@@ -3,6 +3,8 @@ package avdinformatica.group1.rentmycar.utils;
 import android.location.Location;
 
 import java.lang.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.UUID;
 
@@ -20,6 +22,10 @@ public class Helper {
     public static double getLong(String coordinates) {
         String[] latLong = coordinates.split(",");
         return Double.parseDouble(latLong[1]);
+    }
+
+    public static Date stringToDate(String date) throws ParseException {
+        return new SimpleDateFormat().parse(date);
     }
 
     /* Returns the units in meters. */

@@ -26,6 +26,6 @@ public interface ApiService {
     @POST("/api/v1/cars/available")
     Call<List<CarResponse>> getAvailableCars(@Body CarResponse carResponse);
 
-    @PUT("/api/v1/cars/available")
-    Call<UserResponse> addCar(@Body RegisterCarResponse registerCarResponse);
+    @PUT("/api/v1/cars/register")
+    Call<RegisterCarResponse> addCar(@Body RegisterCarResponse registerCarResponse);
 }

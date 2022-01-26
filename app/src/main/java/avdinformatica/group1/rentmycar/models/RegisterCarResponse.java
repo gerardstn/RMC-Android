@@ -1,5 +1,7 @@
 package avdinformatica.group1.rentmycar.models;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -9,66 +11,74 @@ import javax.annotation.Generated;
 @Generated("com.robohorse.robopojogenerator")
 public class RegisterCarResponse implements Serializable {
 
+
     @SerializedName("brand")
-    private String et_car_register_brand;
-
+    private String brand;
     @SerializedName("model")
-    private String et_car_register_model;
-
+    private String model;
+    @SerializedName("pickupLocationCoordinates")
+    private String distance;
+    @SerializedName("carType")
+    private String carType;
     @SerializedName("licensePlate")
-    private String et_car_register_license_plate;
+    private String licensePlate;
+    @SerializedName("clientId")
+    private Long clientId;
 
-    @SerializedName("engineType")
-    private String engineType;
-
-    @SerializedName("location")
-    private String et_car_register_location;
-
-    public RegisterCarResponse(String brand, String model, String licensePlate, String engineType, String location) {
-        this.et_car_register_brand = brand;
-        this.et_car_register_model = model;
-        this.et_car_register_license_plate = licensePlate;
-        this.engineType = engineType;
-        this.et_car_register_location = location;
+    public RegisterCarResponse(String brand, String model, String distance, String carType, String licensePlate, Long clientId) {
+        this.brand = brand;
+        this.model = model;
+        this.distance = distance;
+        this.carType = carType;
+        this.licensePlate = licensePlate;
+        this.clientId = clientId;
     }
 
     public String getBrand() {
-        return et_car_register_brand;
+        return brand;
     }
 
     public void setBrand(String brand) {
-        this.et_car_register_brand = brand;
+        this.brand = brand;
     }
 
     public String getModel() {
-        return et_car_register_model;
+        return model;
     }
 
     public void setModel(String model) {
-        this.et_car_register_model = model;
+        this.model = model;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
     }
 
     public String getLicensePlate() {
-        return et_car_register_license_plate;
+        return licensePlate;
     }
 
     public void setLicensePlate(String licensePlate) {
-        this.et_car_register_license_plate = licensePlate;
+        this.licensePlate = licensePlate;
     }
 
-    public String getEngineType() {
-        return engineType;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setEngineType(String engineType) {
-        this.engineType = engineType;
-    }
-
-    public String getLocation() {
-        return et_car_register_location;
-    }
-
-    public void setLocation(String location) {
-        this.et_car_register_location = location;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 }

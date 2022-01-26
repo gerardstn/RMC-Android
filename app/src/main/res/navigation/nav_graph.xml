@@ -7,6 +7,7 @@
     <fragment
         android:id="@+id/fragment_login"
         android:name="avdinformatica.group1.rentmycar.ui.LoginFragment"
+        android:label="Login to RentMyCar"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_home"

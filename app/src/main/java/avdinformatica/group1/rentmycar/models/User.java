@@ -1,21 +1,18 @@
 package avdinformatica.group1.rentmycar.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.Date;
 
 @Entity(tableName = "user")
 public class User {
 
-    private String email;
-    private String name;
-    private String surName;
     @PrimaryKey
     @NonNull
     private String sessionId;
+    private String email;
+    private String name;
+    private String surName;
     private Long clientId;
 
     public Long getClientId() {

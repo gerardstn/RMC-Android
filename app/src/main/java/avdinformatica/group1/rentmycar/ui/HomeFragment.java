@@ -1,6 +1,7 @@
 package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,9 @@ import retrofit2.Response;
  */
 public class HomeFragment extends Fragment {
 
+    private static final String SESSION_ID = "sessionId";
+    private String mSessionId;
+
     User user;
     String sessionId;
     TextView tvEmail;
@@ -47,7 +51,7 @@ public class HomeFragment extends Fragment {
     public static HomeFragment newInstance(String sessionId) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString("sessionId", sessionId);
+        args.putString(SESSION_ID, sessionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,18 +60,21 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            sessionId = getArguments().getString("sessionId");
+            mSessionId = getArguments().getString(SESSION_ID);
+            Log.d("user", "onCreate: mSessionId = " + mSessionId);
         }
-
-        AppDatabase appDatabase = AppDatabase.getInstance(requireActivity().getApplicationContext());
-        user = appDatabase.userDao().getUser(sessionId);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        AppDatabase appDatabase = AppDatabase.getInstance(requireActivity().getApplicationContext());
+        user = appDatabase.userDao().getUser(mSessionId);
+
+        Log.d("user", "mSessionId: "+mSessionId);
+        Log.d("user", "User email is: " + user.getEmail());
 
         tvEmail = view.findViewById(R.id.tv_Email);
         tvEmail.setText(user.getEmail());
@@ -79,10 +86,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void onClickListeners() {
+        /* Setup the bundle with sessionId */
+        Bundle bundle = new Bundle();
+        bundle.putString(SESSION_ID, mSessionId);
+
         btnRegisterYourCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_home_to_car_registraion);
+                Navigation.findNavController(view).navigate(R.id.action_home_to_car_registraion, bundle);
             }
         });
 
@@ -100,7 +111,6 @@ public class HomeFragment extends Fragment {
                         if (response.body() != null) {
                             Toast.makeText(getActivity().getApplicationContext(), "Cars loading", Toast.LENGTH_SHORT).show();
 
-                            Bundle bundle = new Bundle();
                             bundle.putSerializable("carList", (Serializable) response.body());
 
                             Navigation.findNavController(view).navigate(R.id.action_home_to_for_rent, bundle);
@@ -118,7 +128,8 @@ public class HomeFragment extends Fragment {
         btnCamera.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View view){
-               Navigation.findNavController(view).navigate(R.id.action_home_to_camera);
+
+               Navigation.findNavController(view).navigate(R.id.action_home_to_camera, bundle);
            }
         });
     }

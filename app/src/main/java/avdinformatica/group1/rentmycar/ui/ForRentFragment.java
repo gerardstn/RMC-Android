@@ -2,18 +2,17 @@ package avdinformatica.group1.rentmycar.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,12 +23,13 @@ import avdinformatica.group1.rentmycar.database.AppDatabase;
 import avdinformatica.group1.rentmycar.database.AppExecutors;
 import avdinformatica.group1.rentmycar.models.Car;
 import avdinformatica.group1.rentmycar.models.CarResponse;
-import avdinformatica.group1.rentmycar.models.User;
 
 public class ForRentFragment extends Fragment implements AvailableCarRecyclerViewAdapter.ItemClickListener {
 
+    private static final String SESSION_ID = "sessionId";
+    private String mSessionId;
+
     AvailableCarRecyclerViewAdapter adapter;
-    String sessionId;
     TextView tvCarBrand, tvCarModel, tvCarDistance, tvCarPrice;
     ArrayList<CarResponse> carList;
 
@@ -41,7 +41,7 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
         ForRentFragment fragment = new ForRentFragment();
         Bundle args = new Bundle();
         args.putSerializable("carList", carList);
-        args.putString("sessionId", sessionId);
+        args.putString(SESSION_ID, sessionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +50,8 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            sessionId = getArguments().getString("sessionId");
+            mSessionId = getArguments().getString(SESSION_ID);
+            Log.d("user", "onCreate: mSessionId = " + mSessionId);
             carList = (ArrayList<CarResponse>) getArguments().getSerializable("carList");
         }
     }
@@ -85,6 +86,7 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
     public void onItemClick(View view, int position) {
 
         Bundle bundle = new Bundle();
+        bundle.putString(SESSION_ID, mSessionId);
         bundle.putLong("carId", adapter.getItem(position).getCarId());
 
         Navigation.findNavController(view).navigate(R.id.action_fragment_for_rent_to_fragment_for_rent_detail, bundle);

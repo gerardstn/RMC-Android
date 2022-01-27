@@ -1,6 +1,7 @@
 package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class ThanksForSubmittingFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mSessionId = getArguments().getString(SESSION_ID);
+        }else{
+            Log.d("user", "onCreate: No arguments found!!");
         }
     }
 
@@ -53,7 +56,9 @@ public class ThanksForSubmittingFragment extends Fragment {
             public void onClick(View view) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("sessionId", mSessionId);
+                bundle.putString(SESSION_ID, mSessionId);
+
+                Log.d("user", "mSessionId: "+mSessionId);
 
                 Navigation.findNavController(view)
                         .navigate(R.id.action_fragment_thanks_for_submission_to_fragment_home, bundle);

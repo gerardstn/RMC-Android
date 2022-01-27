@@ -1,10 +1,6 @@
 package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
@@ -75,16 +74,21 @@ public class LoginFragment extends Fragment {
                     apiService.getUser(registerResponse).enqueue(new Callback<UserResponse>() {
                         @Override
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                            String sessId = Helper.generateRandomSessionString();
+                            String sessionId = Helper.generateRandomSessionString();
                             if (response.body() != null) {
 
                                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                                     @Override
                                     public void run() {
 
-                                        AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
-                                        User user = new User(response.body().getEmail(), response.body().getName(), response.body().getSurname(), sessId, response.body().getId() );
+                                        AppDatabase appDatabase = AppDatabase.getInstance(requireActivity().getApplicationContext());
+                                        User user = new User(response.body().getEmail(),
+                                                response.body().getName(),
+                                                response.body().getSurname(),
+                                                sessionId,
+                                                response.body().getId() );
                                         appDatabase.userDao().insertUser(user);
+
                                     }
                                 });
 
@@ -94,13 +98,10 @@ public class LoginFragment extends Fragment {
                                     e.printStackTrace();
                                 }
 
-                                Toast.makeText(getActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity().getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
 
                                 Bundle bundle = new Bundle();
-                                bundle.putString("sessionId", sessId);
-
-                                HomeFragment fragment = new HomeFragment();
-                                fragment.setArguments(bundle);
+                                bundle.putString("sessionId", sessionId);
 
                                 Navigation.findNavController(view).navigate(R.id.action_login_to_home, bundle);
                             }
@@ -108,7 +109,7 @@ public class LoginFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<UserResponse> call, Throwable t) {
-                            Toast.makeText(getActivity().getApplicationContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity().getApplicationContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
                         }
                     });
 

@@ -2,6 +2,7 @@ package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +37,11 @@ public class ForRentDetailFragment extends Fragment {
 
 
     private static final String ARG_PARAM1 = "carId";
+    private static final String SESSION_ID = "sessionId";
     private GPSService mGPS;
     private Long mCarId;
+    private String mSessionId;
     private Button btnReserveCar;
-    String sessionId;
     User user;
     Car car;
     TextView tvCarDetailsBrand, tvCarDetailsModel, tvCarDetailsDistance, tvCarDetailsPrice, tvCarDetailsType, tvCarDetailsFuel, tvCarDetailsUsage;
@@ -59,10 +61,11 @@ public class ForRentDetailFragment extends Fragment {
     }
 
 
-    public static ForRentDetailFragment newInstance(Long param1) {
+    public static ForRentDetailFragment newInstance(Long param1, String sessionId) {
         ForRentDetailFragment fragment = new ForRentDetailFragment();
         Bundle args = new Bundle();
         args.putLong("carId", param1);
+        args.putString("sessionId", sessionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,8 +77,11 @@ public class ForRentDetailFragment extends Fragment {
 
         if (getArguments() != null) {
             mCarId = getArguments().getLong(ARG_PARAM1);
+            mSessionId = getArguments().getString(SESSION_ID);
+            Log.d("user", "onCreate: mSessionId = " + mSessionId);
+
             car = appDatabase.carDao().getCar(mCarId);
-            user = appDatabase.userDao().getUser(getArguments().getString("sessionId"));
+            user = appDatabase.userDao().getUser(mSessionId);
         }
 
 
@@ -94,8 +100,11 @@ public class ForRentDetailFragment extends Fragment {
                             if (response.body() != null) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Reservation successful", Toast.LENGTH_SHORT).show();
 
+                                Bundle bundle = new Bundle();
+                                bundle.putString(SESSION_ID, mSessionId);
+
                                 Navigation.findNavController(v)
-                                        .navigate(R.id.action_fragment_for_rent_details_to_fragment_thanks_for_submitting);
+                                        .navigate(R.id.action_fragment_for_rent_details_to_fragment_thanks_for_submitting, bundle);
                             } else {
                                 Toast.makeText(getActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
                             }

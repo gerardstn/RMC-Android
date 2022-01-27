@@ -14,21 +14,14 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
 import avdinformatica.group1.rentmycar.models.Car;
-import avdinformatica.group1.rentmycar.models.RegisterResponse;
 import avdinformatica.group1.rentmycar.models.ReservationResponse;
 import avdinformatica.group1.rentmycar.models.User;
-import avdinformatica.group1.rentmycar.models.UserResponse;
 import avdinformatica.group1.rentmycar.network.Network;
 import avdinformatica.group1.rentmycar.services.ApiService;
 import avdinformatica.group1.rentmycar.services.GPSService;
@@ -100,8 +93,9 @@ public class ForRentDetailFragment extends Fragment {
                         public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
                             if (response.body() != null) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Reservation successful", Toast.LENGTH_SHORT).show();
-                                HomeFragment fragment = new HomeFragment();
-                                Navigation.findNavController(v).navigate(R.id.fragment_thanks_for_submission);
+
+                                Navigation.findNavController(v)
+                                        .navigate(R.id.action_fragment_for_rent_details_to_fragment_thanks_for_submitting);
                             } else {
                                 Toast.makeText(getActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
                             }

@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/tv_thanks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:text="Bedankt!" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_thanks_layout"
+        android:layout_width="305dp"
+        android:layout_height="355dp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true">
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_thanks_home"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/tv_thanks"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:text="Terug naar home" />-->
+        <TextView
+            android:id="@+id/tv_thanks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Gelukt!"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_thanks_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="48dp"
+            android:text="Bedankt voor het maken van de reservering!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_thanks" />
+
+        <Button
+            android:id="@+id/btn_back_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terug naar home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_thanks_message" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

@@ -1,15 +1,6 @@
 package avdinformatica.group1.rentmycar.ui;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,23 +8,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.Serializable;
-import java.security.Permission;
 import java.util.List;
 
-import avdinformatica.group1.rentmycar.MainActivity;
 import avdinformatica.group1.rentmycar.R;
 import avdinformatica.group1.rentmycar.database.AppDatabase;
-import avdinformatica.group1.rentmycar.database.AppExecutors;
 import avdinformatica.group1.rentmycar.models.CarResponse;
 import avdinformatica.group1.rentmycar.models.User;
 import avdinformatica.group1.rentmycar.network.Network;
 import avdinformatica.group1.rentmycar.services.ApiService;
-import avdinformatica.group1.rentmycar.utils.PermissionHandler;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,9 +59,8 @@ public class HomeFragment extends Fragment {
             sessionId = getArguments().getString("sessionId");
         }
 
-        AppDatabase appDatabase = AppDatabase.getInstance(getActivity().getApplicationContext());
+        AppDatabase appDatabase = AppDatabase.getInstance(requireActivity().getApplicationContext());
         user = appDatabase.userDao().getUser(sessionId);
-
 
     }
 

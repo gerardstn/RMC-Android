@@ -49,8 +49,8 @@
         android:label="Register own car"
         tools:layout="@layout/fragment_car_registration">
         <action
-            android:id="@+id/fragment_car_registration_to_thanks_for_submission"
-            app:destination="@id/fragment_thanks_for_submission" />
+            android:id="@+id/fragment_car_registration_to_thanks_for_submitting"
+            app:destination="@id/fragment_thanks_for_submitting" />
         <action
             android:id="@+id/action_fragment_car_registration_pop_including_fragment_home"
             app:popUpTo="@id/fragment_home"
@@ -85,17 +85,22 @@
         android:label="Car detail screen"
         tools:layout="@layout/fragment_for_rent_detail">
         <action
-            android:id="@+id/fragment_for_rent_to_thanks_for_submission"
-            app:destination="@id/fragment_thanks_for_submission" />
+            android:id="@+id/action_fragment_for_rent_details_to_fragment_thanks_for_submitting"
+            app:destination="@id/fragment_thanks_for_submitting" />
         <action
             android:id="@+id/action_fragment_for_rent_detail_pop_including_fragment_for_rent"
             app:popUpTo="@id/fragment_for_rent"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_thanks_for_submission"
+        android:id="@+id/fragment_thanks_for_submitting"
+        android:name="avdinformatica.group1.rentmycar.ui.ThanksForSubmittingFragment"
         android:label="Car rent screen"
-        tools:layout="@layout/fragment_thanks_for_submitting"/>
+        tools:layout="@layout/fragment_thanks_for_submitting">
+        <action
+            android:id="@+id/action_fragment_thanks_for_submission_to_fragment_home"
+            app:destination="@id/fragment_home" />
+    </fragment>
     <fragment
         android:id="@+id/cameraFragment"
         android:name="avdinformatica.group1.rentmycar.ui.CameraFragment"

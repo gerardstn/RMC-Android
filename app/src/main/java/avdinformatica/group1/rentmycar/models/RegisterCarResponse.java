@@ -1,7 +1,5 @@
 package avdinformatica.group1.rentmycar.models;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -24,14 +22,17 @@ public class RegisterCarResponse implements Serializable {
     private String licensePlate;
     @SerializedName("clientId")
     private Long clientId;
+    @SerializedName("forRent")
+    private boolean forRent;
 
-    public RegisterCarResponse(String brand, String model, String distance, String carType, String licensePlate, Long clientId) {
+    public RegisterCarResponse(String brand, String model, String distance, String carType, String licensePlate, Long clientId, boolean forRent) {
         this.brand = brand;
         this.model = model;
         this.distance = distance;
         this.carType = carType;
         this.licensePlate = licensePlate;
         this.clientId = clientId;
+        this.forRent = forRent;
     }
 
     public String getBrand() {

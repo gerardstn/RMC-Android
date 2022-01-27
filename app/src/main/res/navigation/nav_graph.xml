@@ -49,7 +49,7 @@
         android:label="Register own car"
         tools:layout="@layout/fragment_car_registration">
         <action
-            android:id="@+id/fragment_car_registration_to_thanks_for_submitting"
+            android:id="@+id/action_fragment_car_registration_to_fragment_thanks_for_submitting"
             app:destination="@id/fragment_thanks_for_submitting" />
         <action
             android:id="@+id/action_fragment_car_registration_pop_including_fragment_home"

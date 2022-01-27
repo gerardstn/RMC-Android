@@ -64,7 +64,7 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
 
         ArrayList<CarResponse> carDetails = new ArrayList<CarResponse>(carList);
 
-        AppExecutors.getInstance().diskIO().execute(new CarImporter(carList, getActivity().getApplicationContext()));
+        AppExecutors.getInstance().diskIO().execute(new CarImporter(carList, requireActivity().getApplicationContext()));
 
 
         // set up the RecyclerView
@@ -91,7 +91,7 @@ public class ForRentFragment extends Fragment implements AvailableCarRecyclerVie
 
         Navigation.findNavController(view).navigate(R.id.action_fragment_for_rent_to_fragment_for_rent_detail, bundle);
 
-        Toast.makeText(getActivity().getApplicationContext(), "You clicked " + adapter.getItem(position).getCarId() + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireActivity().getApplicationContext(), "You clicked " + adapter.getItem(position).getCarId() + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
 

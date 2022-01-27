@@ -1,5 +1,6 @@
 package avdinformatica.group1.rentmycar.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +19,12 @@ import avdinformatica.group1.rentmycar.utils.Helper;
 
 public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<AvailableCarRecyclerViewAdapter.ViewHolder>{
 
-    private ArrayList<CarResponse> mData;
-    private LayoutInflater mInflater;
+    private final ArrayList<CarResponse> mData;
+    private final LayoutInflater mInflater;
+    private final GPSService mGPS;
     private ItemClickListener mClickListener;
     private Context mContext;
-    private GPSService mGPS;
+
 
     // data is passed into the constructor
     public AvailableCarRecyclerViewAdapter(Context context, ArrayList<CarResponse> data) {
@@ -40,6 +42,7 @@ public class AvailableCarRecyclerViewAdapter extends RecyclerView.Adapter<Availa
     }
 
     // binds the data to the TextView in each row
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         CarResponse carModel = mData.get(position);

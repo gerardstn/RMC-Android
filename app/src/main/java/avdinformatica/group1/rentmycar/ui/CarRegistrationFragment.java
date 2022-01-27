@@ -1,12 +1,15 @@
 package avdinformatica.group1.rentmycar.ui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -35,7 +38,8 @@ public class CarRegistrationFragment extends Fragment {
 
     EditText etCarRegisterBrand, etCarRegisterModel, etCarRegisterLicensePlate, etCarRegisterLocation;
     User user;
-    RadioButton engineType;
+    RadioButton rbCarEngineTypeBev, rbCarEngineTypeIce, rbCarEngineTypeFcev;
+    RadioGroup rgCarEngineType;
     Button btnCarRegister;
 
 
@@ -69,39 +73,54 @@ public class CarRegistrationFragment extends Fragment {
         btnCarRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (validateForm()) {
 
-                RegisterCarResponse registerCarResponse = new RegisterCarResponse(
-                        etCarRegisterBrand.getText().toString(),
-                        etCarRegisterModel.getText().toString(),
-                        etCarRegisterLocation.getText().toString(),
-                        engineType.getText().toString(),
-                        etCarRegisterLicensePlate.getText().toString(),
-                        user.getClientId(), true);
+                    RadioButton rb = null;
 
-                ApiService apiService = Network.getInstance().create(ApiService.class);
-                apiService.addCar(registerCarResponse).enqueue(new Callback<RegisterCarResponse>() {
-                    @Override
-                    @EverythingIsNonNull
-                    public void onResponse(Call<RegisterCarResponse> call, Response<RegisterCarResponse> response) {
-                        if (response.body() != null) {
-                            Toast.makeText(requireActivity().getApplicationContext(), "Car Registered successful", Toast.LENGTH_SHORT).show();
+                    if (rbCarEngineTypeBev.isChecked()){
+                        rb = rbCarEngineTypeBev;
+                    }else if (rbCarEngineTypeIce.isChecked()){
+                        rb = rbCarEngineTypeIce;
+                    }else if (rbCarEngineTypeFcev.isChecked()){
+                        rb = rbCarEngineTypeFcev;
+                    }
 
-                            Navigation.findNavController(v).navigate(
-                                    R.id.action_fragment_car_registration_to_fragment_thanks_for_submitting, bundle);
+                    assert rb != null;
 
-                        } else {
-                            Toast.makeText(requireActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
+                    RegisterCarResponse registerCarResponse = new RegisterCarResponse(
+                            etCarRegisterBrand.getText().toString(),
+                            etCarRegisterModel.getText().toString(),
+                            etCarRegisterLocation.getText().toString(),
+                            rb.getText().toString(),
+                            etCarRegisterLicensePlate.getText().toString(),
+                            user.getClientId(), true);
+
+                    ApiService apiService = Network.getInstance().create(ApiService.class);
+                    apiService.addCar(registerCarResponse).enqueue(new Callback<RegisterCarResponse>() {
+                        @Override
+                        @EverythingIsNonNull
+                        public void onResponse(Call<RegisterCarResponse> call, Response<RegisterCarResponse> response) {
+                            if (response.body() != null) {
+                                Toast.makeText(requireActivity().getApplicationContext(), "Car Registered successful", Toast.LENGTH_SHORT).show();
+
+                                Navigation.findNavController(v).navigate(
+                                        R.id.action_fragment_car_registration_to_fragment_thanks_for_submitting, bundle);
+
+                            } else {
+                                Toast.makeText(requireActivity().getApplicationContext(), "something went wrong! please try again", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<RegisterCarResponse> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<RegisterCarResponse> call, Throwable t) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -117,11 +136,82 @@ public class CarRegistrationFragment extends Fragment {
         etCarRegisterBrand = view.findViewById(R.id.et_car_register_brand);
         etCarRegisterModel = view.findViewById(R.id.et_car_register_model);
         etCarRegisterLicensePlate = view.findViewById(R.id.et_car_register_licence_plate);
-        engineType = view.findViewById(R.id.rb_car_register_bev);
-        engineType = view.findViewById(R.id.rb_car_register_ice);
-        engineType = view.findViewById(R.id.rb_car_register_fcev);
+        rgCarEngineType = view.findViewById(R.id.rg_car_engine_type);
+        rbCarEngineTypeBev = view.findViewById(R.id.rb_car_register_bev);
+        rbCarEngineTypeIce = view.findViewById(R.id.rb_car_register_ice);
+        rbCarEngineTypeFcev = view.findViewById(R.id.rb_car_register_fcev);
         etCarRegisterLocation = view.findViewById(R.id.et_car_register_location);
         btnCarRegister = view.findViewById(R.id.btn_car_register);
     }
 
+    private boolean validateForm() {
+        return validateCarRegisterBrand()
+                && validateCarRegisterModel()
+                && validateCarRegisterLicensePlate()
+                && validateCarRegisterLocation()
+                && validateCarRegisterEngineType();
+    }
+
+    private boolean validateCarRegisterBrand() {
+        if (TextUtils.isEmpty(etCarRegisterBrand.getText().toString())) {
+            etCarRegisterBrand.setError("Merk mag niet leeg zijn");
+            etCarRegisterBrand.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCarRegisterModel() {
+        if (TextUtils.isEmpty(etCarRegisterModel.getText().toString())) {
+            etCarRegisterModel.setError("Model mag niet leeg zijn");
+            etCarRegisterModel.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCarRegisterLicensePlate() {
+        if (TextUtils.isEmpty(etCarRegisterLicensePlate.getText().toString())) {
+            etCarRegisterLicensePlate.setError("Kenteken mag niet leeg zijn");
+            etCarRegisterLicensePlate.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCarRegisterLocation() {
+
+        if (TextUtils.isEmpty(etCarRegisterLocation.getText().toString())) {
+            etCarRegisterLocation.setError("Locatie mag niet leeg zijn");
+            etCarRegisterLocation.requestFocus();
+            return false;
+        }
+
+        String regexp = "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?),\\s*[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$";
+
+        if (!etCarRegisterLocation.getText().toString().matches(regexp)) {
+            etCarRegisterLocation.setError("Locatie waarde zijn geen geldige coordinaten");
+            etCarRegisterLocation.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateCarRegisterEngineType(){
+        if (rgCarEngineType.getCheckedRadioButtonId() == -1){
+            Toast.makeText(requireActivity().getApplicationContext(), "Selecteer een auto type", Toast.LENGTH_LONG).show();
+            rgCarEngineType.requestFocus();
+            return false;
+        }
+//
+//        if(!rbCarEngineTypeBev.isSelected() && !rbCarEngineTypeFcev.isSelected() && !rbCarEngineTypeIce.isSelected()){
+//            Toast.makeText(requireActivity().getApplicationContext(), "Selecteer een auto type", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
+
+        Log.d("Engine Type", "validateCarRegisterEngineType: " + rgCarEngineType.getCheckedRadioButtonId());
+
+        return true;
+    }
 }

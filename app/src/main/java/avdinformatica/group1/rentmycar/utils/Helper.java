@@ -40,4 +40,25 @@ public class Helper {
         return uuid;
     }
 
+    public static String getCarEngineTypeById(int id){
+
+        String answer = null;
+
+        switch (id){
+            case 1:
+                answer = "IceCar";
+                break;
+            case 2:
+                answer = "BevCar";
+                break;
+            case 3:
+                answer = "FcevCar";
+                break;
+            default:
+                answer = "Unknown";
+                break;
+        }
+
+        return answer;
+    }
 }

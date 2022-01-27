@@ -91,32 +91,34 @@
 
 
     <RadioGroup
-        android:id="@+id/rb_car_register_type"
+        android:id="@+id/rg_car_engine_type"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_car_register_type"
-        android:layout_alignLeft="@id/tv_car_register_type"
         android:layout_alignStart="@id/tv_car_register_type"
-        android:orientation="horizontal"
-        >
+        android:layout_alignLeft="@id/tv_car_register_type"
+        android:orientation="horizontal">
+
         <RadioButton
             android:id="@+id/rb_car_register_bev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Elektrisch"
-            android:textSize="11sp"/>
+            android:textSize="11sp" />
+
         <RadioButton
             android:id="@+id/rb_car_register_ice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Brandstof"
-            android:textSize="11sp"/>
+            android:textSize="11sp" />
+
         <RadioButton
             android:id="@+id/rb_car_register_fcev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Waterstof"
-            android:textSize="11sp"/>
+            android:textSize="11sp" />
     </RadioGroup>
 
 
@@ -126,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/et_car_register_location"
         android:layout_alignStart="@id/et_car_register_location"
-        android:layout_below="@id/rb_car_register_type"
+        android:layout_below="@id/rg_car_engine_type"
         android:layout_marginTop="7dp"
         android:text="Kenteken"
         android:textColor="#000000"
@@ -138,7 +140,7 @@
         android:background="#11000000"
         android:layout_width="250dp"
         android:layout_height="30dp"
-        android:layout_below="@id/rb_car_register_type"
+        android:layout_below="@id/rg_car_engine_type"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:ems="10"

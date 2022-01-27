@@ -9,57 +9,38 @@ public class User {
 
     @PrimaryKey
     @NonNull
-    private String sessionId;
-    private String email;
+    private final Long clientId;
+    private final String sessionId;
+    private final String email;
     private String name;
-    private String surName;
-    private Long clientId;
+    private final String surName;
+
 
     public Long getClientId() {
         return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurName() {
         return surName;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
     public String getSessionId() {
         return sessionId;
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public User(String email, String name, String surName, @NonNull String sessionId, Long clientId) {
+    public User(Long clientId, String email, String name, String surName, @NonNull String sessionId) {
+        this.clientId = clientId;
         this.email = email;
         this.name = name;
         this.surName = surName;
         this.sessionId = sessionId;
-        this.clientId = clientId;
     }
 }

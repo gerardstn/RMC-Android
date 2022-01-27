@@ -1,9 +1,6 @@
 package avdinformatica.group1.rentmycar.database;
 
 import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
-
-import static com.google.android.gms.common.util.ArrayUtils.contains;
-
 import static org.hamcrest.Matchers.equalTo;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
@@ -19,8 +16,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import avdinformatica.group1.rentmycar.models.User;
 import kotlinx.coroutines.ExperimentalCoroutinesApi;
@@ -57,7 +52,7 @@ public class UserDaoTest {
 
     @Test
     public void insertUser() throws Exception{
-        user = new User("kees.brood@gmail.nl", "Kees", "Brood", "00000000-0000-0000-00000001", 4L);
+        user = new User(4L, "kees.brood@gmail.nl", "Kees", "Brood", "00000000-0000-0000-00000001");
         dao.insertUser(user);
 
         User sut = dao.getUser("00000000-0000-0000-00000001");

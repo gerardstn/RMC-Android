@@ -25,6 +25,7 @@ import avdinformatica.group1.rentmycar.utils.Helper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class LoginFragment extends Fragment {
 
@@ -46,6 +47,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -72,6 +74,7 @@ public class LoginFragment extends Fragment {
 
                     ApiService apiService = Network.getInstance().create(ApiService.class);
                     apiService.getUser(registerResponse).enqueue(new Callback<UserResponse>() {
+                        @EverythingIsNonNull
                         @Override
                         public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                             String sessionId = Helper.generateRandomSessionString();
@@ -82,11 +85,12 @@ public class LoginFragment extends Fragment {
                                     public void run() {
 
                                         AppDatabase appDatabase = AppDatabase.getInstance(requireActivity().getApplicationContext());
-                                        User user = new User(response.body().getEmail(),
+                                        User user = new User(
+                                                response.body().getClientId(),
+                                                response.body().getEmail(),
                                                 response.body().getName(),
                                                 response.body().getSurname(),
-                                                sessionId,
-                                                response.body().getId() );
+                                                sessionId );
                                         appDatabase.userDao().insertUser(user);
 
                                     }

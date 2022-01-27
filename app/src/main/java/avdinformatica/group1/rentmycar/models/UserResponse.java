@@ -1,16 +1,16 @@
 package avdinformatica.group1.rentmycar.models;
 
-import javax.annotation.Generated;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import javax.annotation.Generated;
+
 @Generated("com.robohorse.robopojogenerator")
 public class UserResponse implements Serializable {
 
-    @SerializedName("id")
-    private long id;
+    @SerializedName("clientId")
+    private long clientId;
 
     @SerializedName("email")
     private String email;
@@ -36,13 +36,14 @@ public class UserResponse implements Serializable {
     @SerializedName("surName")
     private String surName;
 
-    public UserResponse(String email, String password) {
+    public UserResponse(Long clientId, String email, String password) {
+        this.clientId = clientId;
         this.email = email;
         this.password = password;
     }
 
-    public long getId() {
-        return id;
+    public long getClientId() {
+        return this.clientId;
     }
 
     public void setEmail(String email) {
@@ -50,7 +51,7 @@ public class UserResponse implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setPassword(String password) {

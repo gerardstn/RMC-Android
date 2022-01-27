@@ -33,7 +33,7 @@ public class CameraFragmentTest {
     @Test
     public void textViewLoadedTest()
     {
-        onView(withId(R.id.tv_camera_title)).check(matches(withText("Lets see if the camera is working")));
+        onView(withId(R.id.tv_camera_title)).check(matches(withText("Maak een foto van je auto!")));
     }
 
 

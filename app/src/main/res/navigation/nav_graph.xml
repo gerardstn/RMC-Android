@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/fragment_login"
         android:name="avdinformatica.group1.rentmycar.ui.LoginFragment"
-        android:label="Login to RentMyCar"
+        android:label="Login bij RentMyCar"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_home"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/fragment_home"
         android:name="avdinformatica.group1.rentmycar.ui.HomeFragment"
-        android:label="Home screen after login"
+        android:label="RentMyCar Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_car_registraion"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/fragment_car_registration"
         android:name="avdinformatica.group1.rentmycar.ui.CarRegistrationFragment"
-        android:label="Register own car"
+        android:label="Registreer jouw auto"
         tools:layout="@layout/fragment_car_registration">
         <action
             android:id="@+id/action_fragment_car_registration_to_fragment_thanks_for_submitting"
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/fragment_for_rent"
         android:name="avdinformatica.group1.rentmycar.ui.ForRentFragment"
-        android:label="Car list view"
+        android:label="Beschikbare auto's"
         tools:layout="@layout/fragment_for_rent">
         <action
             android:id="@+id/action_fragment_for_rent_to_fragment_for_rent_detail"
@@ -72,8 +72,8 @@
     <fragment
         android:id="@+id/register_fragment"
         android:name="avdinformatica.group1.rentmycar.ui.RegisterFragment"
-        android:label="Registration screen"
-        tools:layout="@layout/fragment_register" >
+        android:label="Registreer bij RentMyCar"
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_register_fragment_pop_including_fragment_login"
             app:popUpTo="@id/fragment_login"
@@ -82,7 +82,7 @@
     <fragment
         android:id="@+id/fragment_for_rent_detail"
         android:name="avdinformatica.group1.rentmycar.ui.ForRentDetailFragment"
-        android:label="Car detail screen"
+        android:label="Deze auto huren?"
         tools:layout="@layout/fragment_for_rent_detail">
         <action
             android:id="@+id/action_fragment_for_rent_details_to_fragment_thanks_for_submitting"
@@ -95,7 +95,7 @@
     <fragment
         android:id="@+id/fragment_thanks_for_submitting"
         android:name="avdinformatica.group1.rentmycar.ui.ThanksForSubmittingFragment"
-        android:label="Car rent screen"
+        android:label="Bedankt!"
         tools:layout="@layout/fragment_thanks_for_submitting">
         <action
             android:id="@+id/action_fragment_thanks_for_submission_to_fragment_home"
@@ -108,8 +108,8 @@
     <fragment
         android:id="@+id/cameraFragment"
         android:name="avdinformatica.group1.rentmycar.ui.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" >
+        android:label="Maak een foto"
+        tools:layout="@layout/fragment_camera">
         <action
             android:id="@+id/action_cameraFragment_pop_including_fragment_home"
             app:popUpTo="@id/fragment_home"

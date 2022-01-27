@@ -51,6 +51,16 @@
         android:text="31km" />
 
     <TextView
+        android:id="@+id/tv_car_distance_metric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_car_details_distance_title"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="4dp"
+        android:layout_toEndOf="@+id/tv_car_details_distance"
+        android:text="km" />
+
+    <TextView
         android:id="@+id/tv_car_details_price_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

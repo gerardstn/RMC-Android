@@ -36,7 +36,7 @@ public class CarRegistrationFragment extends Fragment {
     private static final String SESSION_ID = "sessionId";
     private String mSessionId;
 
-    EditText etCarRegisterBrand, etCarRegisterModel, etCarRegisterLicensePlate, etCarRegisterLocation;
+    EditText etCarRegisterBrand, etCarRegisterModel, etCarRegisterLicensePlate, etCarRegisterLocation, etCarRegisterPrice;
     User user;
     RadioButton rbCarEngineTypeBev, rbCarEngineTypeIce, rbCarEngineTypeFcev;
     RadioGroup rgCarEngineType;
@@ -93,6 +93,7 @@ public class CarRegistrationFragment extends Fragment {
                             etCarRegisterLocation.getText().toString(),
                             rb.getText().toString(),
                             etCarRegisterLicensePlate.getText().toString(),
+                            etCarRegisterPrice.getText().toString(),
                             user.getClientId(), true);
 
                     ApiService apiService = Network.getInstance().create(ApiService.class);
@@ -141,6 +142,7 @@ public class CarRegistrationFragment extends Fragment {
         rbCarEngineTypeIce = view.findViewById(R.id.rb_car_register_ice);
         rbCarEngineTypeFcev = view.findViewById(R.id.rb_car_register_fcev);
         etCarRegisterLocation = view.findViewById(R.id.et_car_register_location);
+        etCarRegisterPrice = view.findViewById(R.id.et_car_register_price);
         btnCarRegister = view.findViewById(R.id.btn_car_register);
     }
 
@@ -148,6 +150,7 @@ public class CarRegistrationFragment extends Fragment {
         return validateCarRegisterBrand()
                 && validateCarRegisterModel()
                 && validateCarRegisterLicensePlate()
+                && validateCarRegisterPrice()
                 && validateCarRegisterLocation()
                 && validateCarRegisterEngineType();
     }
@@ -174,6 +177,15 @@ public class CarRegistrationFragment extends Fragment {
         if (TextUtils.isEmpty(etCarRegisterLicensePlate.getText().toString())) {
             etCarRegisterLicensePlate.setError("Kenteken mag niet leeg zijn");
             etCarRegisterLicensePlate.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCarRegisterPrice() {
+        if (TextUtils.isEmpty(etCarRegisterPrice.getText().toString())) {
+            etCarRegisterPrice.setError("Prijs mag niet leeg zijn");
+            etCarRegisterPrice.requestFocus();
             return false;
         }
         return true;

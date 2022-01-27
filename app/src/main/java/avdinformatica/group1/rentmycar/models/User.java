@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "user")
 public class User {
 
+    private final Long clientId;
     @PrimaryKey
     @NonNull
-    private final Long clientId;
     private final String sessionId;
     private final String email;
     private String name;

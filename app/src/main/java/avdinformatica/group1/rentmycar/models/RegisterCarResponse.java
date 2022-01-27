@@ -20,17 +20,20 @@ public class RegisterCarResponse implements Serializable {
     private String carType;
     @SerializedName("licensePlate")
     private String licensePlate;
+    @SerializedName("price")
+    private String price;
     @SerializedName("clientId")
     private Long clientId;
     @SerializedName("forRent")
     private boolean forRent;
 
-    public RegisterCarResponse(String brand, String model, String distance, String carType, String licensePlate, Long clientId, boolean forRent) {
+    public RegisterCarResponse(String brand, String model, String distance, String carType, String licensePlate, String price, Long clientId, boolean forRent) {
         this.brand = brand;
         this.model = model;
         this.distance = distance;
         this.carType = carType;
         this.licensePlate = licensePlate;
+        this.price = price;
         this.clientId = clientId;
         this.forRent = forRent;
     }
@@ -74,6 +77,10 @@ public class RegisterCarResponse implements Serializable {
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
+
+    public String getPirce() { return price; }
+
+    public void setPrice(String price) { this.price = price; }
 
     public Long getClientId() {
         return clientId;
